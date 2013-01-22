@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
                   :first_name, :last_name, :gender, :birthday
 
   validates_presence_of :first_name, :last_name, :gender, :birthday
+
+  has_and_belongs_to_many :neighborhoods
 end

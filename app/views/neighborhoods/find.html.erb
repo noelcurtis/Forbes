@@ -1,0 +1,13 @@
+<h2>Find Neighborhood</h2>
+
+<%= form_tag do %>
+  <div>
+    <%= label_tag :state_id, "State" %><br />
+    <%= select_tag(:state_id, options_from_collection_for_select(State.order(:name), :id, :name), include_blank: true) %>
+  </div>
+  <div>
+    <%= label_tag :city_id, "City" %><br />
+    <%= select_tag(:city_id, option_groups_from_collection_for_select(State.order(:name), :cities, :name, :id, :name)) %>
+  </div>
+  <div><%= submit_tag "Submit" %></div>
+<% end %>
