@@ -3,11 +3,27 @@
 <%= form_tag do %>
   <div>
     <%= label_tag :state_id, "State" %><br />
-    <%= select_tag(:state_id, options_from_collection_for_select(State.order(:name), :id, :name), include_blank: true) %>
+    <%= select_tag( :state_id, 
+                    options_from_collection_for_select( State.order(:name), 
+                                                        :id, 
+                                                        :name), 
+                    prompt: "Select a State") %>
   </div>
   <div>
     <%= label_tag :city_id, "City" %><br />
-    <%= select_tag(:city_id, option_groups_from_collection_for_select(State.order(:name), :cities, :name, :id, :name)) %>
+    <%=  
+                    #option_groups_from_collection_for_select
+                    grouped_collection_select( :neighborhood,
+                                               :city_id,
+                                               State.order(:name), 
+                                               :cities, 
+                                               :name, 
+                                               :id, 
+                                               :name,
+                    { prompt: "Select a City" })  %> 
   </div>
+
+  <div id="neighborhoods"></div>
+ 
   <div><%= submit_tag "Submit" %></div>
 <% end %>

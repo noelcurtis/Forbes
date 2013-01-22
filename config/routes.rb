@@ -5,4 +5,5 @@ Neighborhoods::Application.routes.draw do
   resources :users
 
   match "neighborhoods/find" => "neighborhoods#find"
+  resources :neighborhoods
 end
