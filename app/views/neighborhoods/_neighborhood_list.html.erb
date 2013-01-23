@@ -1,3 +1,1 @@
-<% @neighborhoods.each do |n| %>
-  <p><%= link_to n.name, "#{n.id}/preview", remote: true %></p>
-<% end %>
+<%= render :partial => 'neighborhood_thumbnail', :collection => @neighborhoods %>

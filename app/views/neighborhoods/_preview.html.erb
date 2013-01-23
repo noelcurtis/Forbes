@@ -1,7 +1,5 @@
-<p><strong><%= @neighborhood.name %></strong></p>
-<p>People:</p>
-<p>Favorites</p>
-<p>
-  <%= button_to "Select Neighborhood", :controller => "users", :action => "add_neighborhood", 
-                :id => current_user.id, :neighborhood_id => @neighborhood.id  %>
-</p>
+  <%= render @neighborhood %>
+<section id="neighborhood_summary">
+  <%= render "neighborhood_summary", :neighborhood => @neighborhood %>  
+</section>
+<%= link_to "Select as Primary Neighborhood", "/users/#{current_user.id}/add_neighborhood/#{@neighborhood.id}", :method => :post %>
