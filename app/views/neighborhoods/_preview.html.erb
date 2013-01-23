@@ -1,0 +1,7 @@
+<p><strong><%= @neighborhood.name %></strong></p>
+<p>People:</p>
+<p>Favorites</p>
+<p>
+  <%= button_to "Select Neighborhood", :controller => "users", :action => "add_neighborhood", 
+                :id => current_user.id, :neighborhood_id => @neighborhood.id  %>
+</p>

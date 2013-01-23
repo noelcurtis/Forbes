@@ -1,6 +1,5 @@
 <h2>Find Neighborhood</h2>
 
-<%= form_tag do %>
   <div>
     <%= label_tag :state_id, "State" %><br />
     <%= select_tag( :state_id, 
@@ -11,19 +10,11 @@
   </div>
   <div>
     <%= label_tag :city_id, "City" %><br />
-    <%=  
-                    #option_groups_from_collection_for_select
-                    grouped_collection_select( :neighborhood,
-                                               :city_id,
-                                               State.order(:name), 
-                                               :cities, 
-                                               :name, 
-                                               :id, 
-                                               :name,
-                    { prompt: "Select a City" })  %> 
+    <%= grouped_collection_select( :neighborhood, :city_id, State.order(:name), 
+                                   :cities, :name, :id, :name) %> 
   </div>
+
+  <%= link_to "Create Your Own Neighborhood", new_neighborhood_path, :class => "new_neighborhood_link", remote: true %>
 
   <div id="neighborhoods"></div>
  
-  <div><%= submit_tag "Submit" %></div>
-<% end %>

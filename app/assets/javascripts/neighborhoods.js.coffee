@@ -6,13 +6,12 @@ jQuery ->
 
   # Show cities based on selected State
   $('#neighborhood_city_id').parent().hide()
+  $('.new_neighborhood_link').hide()
   cities = $('#neighborhood_city_id').html()
   console.log(cities)
   $('#state_id').change -> 
     state = $('#state_id :selected').text()
-    console.log(state)
     options = $(cities).filter("optgroup[label='#{state}']").html()
-    console.log(options)
     if options
       $('#neighborhood_city_id').html(options)
       $('#neighborhood_city_id').parent().show()
@@ -29,6 +28,9 @@ jQuery ->
     update_neighborhoods(city_id)  
 
   update_neighborhoods = (city_id) ->
+    $('.new_neighborhood_link').bind('ajax:before', ->
+        $(this).data('params', { city_id: "#{city_id}" })
+    ).show()
     $.ajax '/neighborhoods',
       type: 'GET'
       datatype: 'html' 
