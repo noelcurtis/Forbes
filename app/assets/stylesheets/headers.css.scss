@@ -10,3 +10,21 @@
   text-align: center;
   border: 1px solid black;
  } 
+
+#neighborhood_header {
+  width: 100%;
+
+  nav {
+    background-color: lightgrey;
+    padding: 1px; 
+    
+    ul {
+      list-style: none; 
+      
+      li {
+        display: inline;
+        padding-right: 10px;
+      }
+    }
+  }
+}

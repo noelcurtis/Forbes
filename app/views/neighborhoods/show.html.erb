@@ -1,0 +1,19 @@
+<header id="neighborhood_header">
+  <h1><%= @neighborhood.name %></h1>
+  <nav>
+    <ul>
+      <li>Home</li>
+      <li>People</li>
+      <li>Events</li>
+      <li>Places</li>
+      <li>Gallery</li>
+      <li>More</li>
+    </ul>
+  </nav>
+</header>
+<section id="neighborhood_feed">
+  <%= text_area_tag "share", nil, disabled: true, placeholder: "Share something..." %>
+</section>
+<section id="neighborhood_details">
+  <p>Details about the neighborhood</p>
+</section>

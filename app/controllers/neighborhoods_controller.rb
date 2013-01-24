@@ -30,6 +30,10 @@ class NeighborhoodsController < ApplicationController
     @neighborhood.save
     current_user.neighborhoods << @neighborhood
     current_user.save
-    redirect_to controller: "users", action: "main_feed", id: current_user.id
+    redirect_to @neighborhood
   end
+  
+  def show
+    @neighborhood = Neighborhood.find(params[:id])
+  end 
 end
