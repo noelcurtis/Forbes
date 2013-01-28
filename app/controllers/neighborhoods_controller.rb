@@ -30,6 +30,8 @@ class NeighborhoodsController < ApplicationController
     @neighborhood.save
     current_user.neighborhoods << @neighborhood
     current_user.save
+    photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id)
+    photo.save
     redirect_to @neighborhood
   end
   

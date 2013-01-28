@@ -14,6 +14,7 @@ end
 
 gem 'jquery-rails'
 gem 'devise'
+gem "paperclip", "~> 3.0"
 
 group :production do 
   gem 'pg'

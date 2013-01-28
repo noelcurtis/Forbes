@@ -1,4 +1,7 @@
 Neighborhoods::Application.routes.draw do
+  resources :photos
+
+
   resources :posts
 
 

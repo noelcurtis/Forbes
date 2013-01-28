@@ -16,5 +16,5 @@
   <%= render @posts %>
 </section>
 <section id="neighborhood_details">
-  <p>Details about the neighborhood</p>
+  <%= image_tag @neighborhood.photos.first.image.url(:medium) unless @neighborhood.photos.empty? %>
 </section>

@@ -1,10 +1,12 @@
 <div id="new_neighborhood">
-<%= form_for @neighborhood do |f| %>
+<%= form_for @neighborhood, :html => { :multipart => true }  do |f| %>
  
   <%= f.hidden_field :city_id, value: @city.id %> 
   <div><%= f.text_field :name, placeholder: "Neighborhood Name", autofocus: true %></div>
   <div><%= text_field_tag "zipcode", nil, disabled: true, placeholder: "Zipcode" %></div>
-  <div><%= text_field_tag "cover photo", nil, disabled: true, placeholder: "Upload Cover Photo" %></div>
+  <br />
+  <div>Choose Cover Photo: <%= file_field_tag 'image' %></div>
+  <br />
   <div><%= text_area_tag "description", nil, disabled: true, placeholder: "Describe the neighborhood." %></div>
   <div>
     <%= f.submit "Create New Neighborhood" %>
