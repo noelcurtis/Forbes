@@ -2,7 +2,7 @@
   <h1><%= @neighborhood.name %></h1>
   <nav>
     <ul>
-      <li>Home</li>
+      <li><%= link_to "Home", "/users/#{current_user.id}/main_feed" %></li>
       <li>People</li>
       <li>Events</li>
       <li>Places</li>
@@ -12,7 +12,8 @@
   </nav>
 </header>
 <section id="neighborhood_feed">
-  <%= text_area_tag "share", nil, disabled: true, placeholder: "Share something..." %>
+  <%= render "posts/form" %>
+  <%= render @posts %>
 </section>
 <section id="neighborhood_details">
   <p>Details about the neighborhood</p>

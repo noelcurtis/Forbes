@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :gender, :birthday
 
   has_and_belongs_to_many :neighborhoods
+  has_many :posts
 end

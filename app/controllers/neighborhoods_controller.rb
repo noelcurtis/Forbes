@@ -35,5 +35,7 @@ class NeighborhoodsController < ApplicationController
   
   def show
     @neighborhood = Neighborhood.find(params[:id])
+    @posts = @neighborhood.posts.order("created_at DESC")
+    @post = Post.new
   end 
 end
