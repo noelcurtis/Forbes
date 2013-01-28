@@ -121,7 +121,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cocaine (= 0.3.2)
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
