@@ -45,19 +45,24 @@
 .neighborhood_thumbnail {
   display: inline-block;
   width: 250px;
-  height: 75px;
+  height: 85px;
   margin: 5px;
   padding: 5px;
   border: 2px solid black;
-  font-size: 14px;
-  line-height: 0.5em;
+
+  p {
+    font-size: 14px;
+    line-height: 14px;
+  }
 }
 
 .photo_thumbnail {
   width: 95px;
-  height: 75px;
+  height: 85px;
   float: left;
+  display: inline;
 }
+
 
 #neighborhood_thumbnail {
   float: left;
