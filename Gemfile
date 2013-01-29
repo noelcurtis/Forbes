@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-
-group :development, :test do
-  gem 'sqlite3'
-end
+gem 'jquery-rails'
+gem 'devise'
+gem 'paperclip', '~> 3.3'
+gem 'client_side_validations'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -12,12 +12,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-gem 'devise'
-gem "paperclip", "~> 3.3"
-
 group :production do 
   gem 'pg'
+end
+
+group :development, :test do
+  gem 'sqlite3'
 end
 
 # To use ActiveModel has_secure_password

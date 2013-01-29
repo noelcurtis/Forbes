@@ -4,5 +4,5 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :neighborhood
 
-  validates_presence_of :user_id
+  validates_presence_of :user_id, :content
 end
