@@ -5,4 +5,7 @@ class Neighborhood < ActiveRecord::Base
   belongs_to :city
   has_many :posts
   has_many :photos
+  
+  validates_presence_of   :name
+  validates_uniqueness_of :name, :scope => :city_id
 end

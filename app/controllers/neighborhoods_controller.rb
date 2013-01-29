@@ -27,12 +27,21 @@ class NeighborhoodsController < ApplicationController
 
   def create
     @neighborhood = Neighborhood.new(params[:neighborhood])
-    @neighborhood.save
-    current_user.neighborhoods << @neighborhood
-    current_user.save
-    photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id)
-    photo.save
-    redirect_to @neighborhood
+    if @neighborhood.save
+      current_user.neighborhoods << @neighborhood
+      current_user.save
+      photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id)
+      photo.save
+      redirect_to @neighborhood
+    elsif @neighborhood.errors.messages.values.include?(["can't be blank"])
+      puts "+++++++++++++++++++++++++++"
+      redirect_to :action => "find"
+    elsif @neighborhood.errors.messages.values.include?(["has already been taken"])
+      puts "----------------------------"
+      flash[:notice] = "It looks like this neighborhood already exists."
+      @neighborhood = Neighborhood.where("name  = ? AND city_id = ?", params[:neighborhood][:name], params[:neighborhood][:city_id]).first
+      redirect_to @neighborhood
+    end
   end
   
   def show
