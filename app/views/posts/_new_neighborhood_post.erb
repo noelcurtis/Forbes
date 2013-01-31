@@ -1,0 +1,19 @@
+<%= form_for @post, url: neighborhood_posts_path(@neighborhood, @post)  do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :neighborhood_id, :value =>  @neighborhood.id %>
+    <%= f.text_field :content, placeholder: "Share something..." %>
+  </div>
+<% end %>

@@ -13,6 +13,10 @@
     </ul>
   </nav>
   <% @neighborhood.users.each do |user| %>
-    <%= image_tag user.photos.last.image.url(:medium) unless user.photos.empty? %>
+    <% if user.has_profile_picture? %>
+      <%= link_to(image_tag(user.profile_picture.image.url(:medium)), user) %>
+    <% else %>
+      <%= link_to(image_tag("missing_profile_picture.png"), user) %>
+    <% end %>
   <% end %>
 </header>

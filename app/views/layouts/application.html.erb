@@ -9,7 +9,7 @@
 <body>
   <div id="main_container"> 
     <header id="main_header">
-      <div id="logo_placeholder">Logo</div>
+      <div id="logo_placeholder"><%= link_to "Logo", root_path %></div>
       <nav id="login_nav"> 
         <% if user_signed_in? %>
           Logged in as <strong><%= current_user.email %></strong>.

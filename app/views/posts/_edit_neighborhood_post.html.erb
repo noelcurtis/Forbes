@@ -12,8 +12,6 @@
   <% end %>
 
   <div class="actions">
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :neighborhood_id, value: @neighborhood.id %>
     <%= f.text_field :content, placeholder: "Share something..." %>
   </div>
 <% end %>

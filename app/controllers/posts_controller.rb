@@ -10,40 +10,47 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    set_vars_based_on_params
   end
 
   def edit
     @post = Post.find(params[:id])
+    set_vars_based_on_params
   end
 
   def create
     @post = Post.new(params[:post])
+    set_vars_based_on_params
     if @post.save 
-      redirect_to(:back)
+      redirect_by_post_type
     end
   end
 
   def update
     @post = Post.find(params[:id])
+    set_vars_based_on_params
 
-    respond_to do |format|
-      if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.update_attributes(params[:post])
+      redirect_by_post_type
+    else
+      defined?(@neighborhood) ? redirect_to(edit_neighborhood_post_path(@neighborhood, @post)) : render(action: "edit")
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    set_vars_based_on_params
 
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
-    end
+    defined?(@neighborhood) ? redirect_to(@neighborhood) : redirect_to(current_user)
   end
+
+  private
+    def redirect_by_post_type
+      defined?(@neighborhood) ? redirect_to(@neighborhood) : redirect_to(@post)
+    end
+
+    def set_vars_based_on_params
+      @neighborhood = Neighborhood.find(params[:neighborhood_id]) unless params[:neighborhood_id].nil?
+    end
 end

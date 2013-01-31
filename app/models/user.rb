@@ -15,4 +15,12 @@ class User < ActiveRecord::Base
   def full_name
     self.first_name + " " + self.last_name
   end
+
+  def has_profile_picture?
+    self.profile_picture_id != nil 
+  end
+
+  def profile_picture
+    Photo.find(self.profile_picture_id)
+  end
 end

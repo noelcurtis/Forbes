@@ -26,8 +26,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user.update_attributes(params[:user])
-      photo = Photo.new(image: params[:image], user_id: @user.id) 
-      photo.save
+      if !params[:image].nil?
+        photo = Photo.new(image: params[:image], user_id: @user.id) 
+        photo.save
+        @user.profile_picture_id = photo.id
+        @user.save
+      end    
       redirect_to @user
     else
       render action: "edit" 
