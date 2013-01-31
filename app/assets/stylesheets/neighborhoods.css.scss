@@ -1,3 +1,59 @@
-// Place all the styles related to the neighborhoods controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#neighborhood_header {
+width: 100%;
+
+  h1 {
+    display: inline;
+  } 
+
+  nav {
+    background-color: lightgrey;
+    padding: 1px;
+    margin-top: 10px;
+
+    ul {
+      list-style: none;
+
+      li {
+        display: inline;
+        padding-right: 10px;
+      }
+    } 
+  }
+
+  img {
+    height: 60px;
+    width: 60px;
+    display: inline;
+  }
+}
+
+#neighborhood_feed {
+  width: 55%;
+  float: left;
+  display: inline-block;
+  padding-top: 10px;
+ 
+  textarea {
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    padding: 5px;
+  }
+}
+
+#neighborhood_details {
+  width: 40%;
+  display: inline-block;
+  float: right;
+  padding-top: 10px;
+
+  .neighborhood-main-photo {
+    display: block;
+  }
+
+  .neighborhood-photo-thumb {
+    height: 30px;
+    display: inline;
+    border-top: 1px solid white;
+  }
+}

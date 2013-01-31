@@ -1,0 +1,18 @@
+<header id="neighborhood_header">
+  <%= flash[:notice] if flash %>
+  <h1><%= @neighborhood.name %></h1>
+  <%= link_to "Join Neighborhood", "/neighborhoods/#{@neighborhood.id}/join" unless current_user.neighborhoods.include?(@neighborhood) %>
+  <nav>
+    <ul>
+      <li><%= link_to "Home", "/users/#{current_user.id}/main_feed" %></li>
+      <li>People</li>
+      <li>Events</li>
+      <li>Places</li>
+      <li>Gallery</li>
+      <li>More</li>
+    </ul>
+  </nav>
+  <% @neighborhood.users.each do |user| %>
+    <%= image_tag user.photos.last.image.url(:medium) unless user.photos.empty? %>
+  <% end %>
+</header>

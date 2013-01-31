@@ -1,4 +1,16 @@
 .post {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  vertical-align: top;
+  line-height: 70%;
+
+  img {
+    height: 47px;
+    width: 47px;
+    float: left;
+    margin-right: 10px;
+  }  
+
   a {
     color: blue;
     text-decoration: none;

@@ -13,4 +13,24 @@ class UsersController < ApplicationController
   def main_feed
     @user = User.find(params[:id]) 
   end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    
+    if @user.update_attributes(params[:user])
+      photo = Photo.new(image: params[:image], user_id: @user.id) 
+      photo.save
+      redirect_to @user
+    else
+      render action: "edit" 
+    end
+  end
 end

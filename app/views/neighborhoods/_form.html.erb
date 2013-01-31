@@ -17,7 +17,7 @@
   <br />
   <div>Choose Cover Photo: <%= file_field_tag 'image' %></div>
   <br />
-  <div><%= text_area_tag "description", nil, disabled: true, placeholder: "Describe the neighborhood." %></div>
+  <div><%= f.text_area :description, placeholder: "Describe the neighborhood." %></div>
   <div>
     <%= f.submit "Create New Neighborhood" %>
   </div>

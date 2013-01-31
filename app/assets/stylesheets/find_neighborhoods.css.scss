@@ -47,21 +47,22 @@
   width: 250px;
   height: 85px;
   margin: 5px;
-  padding: 5px;
   border: 2px solid black;
 
   p {
     font-size: 14px;
     line-height: 14px;
   }
+
+  img {
+    vertical-align: center;
+    float: left;
+    height: 100%;
+    width: 95px;
+    margin-right: 10px;
+  }
 }
 
-.photo_thumbnail {
-  width: 95px;
-  height: 85px;
-  float: left;
-  display: inline;
-}
 
 
 #neighborhood_thumbnail {

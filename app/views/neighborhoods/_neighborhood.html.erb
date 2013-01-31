@@ -1,5 +1,5 @@
 <div class="neighborhood_thumbnail">
-  <div class="photo_thumbnail"></div>
+  <%= image_tag neighborhood.photos.first.image.url(:medium) unless neighborhood.photos.empty? %>
   <p><%= link_to neighborhood.name, "#{neighborhood.id}/preview", remote: true %></p>
   <p>People: </p>
   <p>Favorites: </p>

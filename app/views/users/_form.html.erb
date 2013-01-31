@@ -1,0 +1,26 @@
+<%= form_for @user, :html => { :multipart => true } do |f| %>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, placeholder: "First Name" %>
+  </div>
+  <div> 
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, placeholder: "Last Name" %>
+  </div>  
+  <div>
+    <%= f.radio_button :gender, "male" %>
+    <%= f.label :gender_male, "Male" %>
+ 
+    <%= f.radio_button :gender, "female" %>
+    <%= f.label :gender_female, "Female" %>
+  </div>
+ 
+  <div>
+    <%= f.label :birthday %>
+    <%= f.date_select :birthday, order: [:month, :day, :year] %>
+  </div>  
+  <div>
+    <span>Profile Picture: </span><%= file_field_tag 'image' %></div>
+  <div><%= f.submit "Update Profile" %></div>
+<% end %>
+

@@ -1,0 +1,14 @@
+<header id="user_header">
+  <h1><%= @user.full_name %></h1>
+  <span>(<%= link_to "edit profile", edit_user_path(@user) if @user == current_user %>)</span> 
+  <div>Cover Photo</div>
+  <nav>
+    <ul>
+      <li>Activity</li>
+      <li>About</li>
+      <li>Photos</li>
+      <li>Friends</li>
+      <li>Favorites</li>
+    </ul>
+  </nav>
+</header>

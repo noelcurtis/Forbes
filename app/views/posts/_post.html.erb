@@ -1,4 +1,5 @@
 <article class="post">
+  <%= image_tag post.user.photos.last.image.url(:medium) %>
   <%= link_to(post.user.first_name, post.user) %> 
   <span class="date"><%=  post.created_at.strftime("%l:%M %p %m/%d/%y") %></span>
   <p><%= post.content %><p>
