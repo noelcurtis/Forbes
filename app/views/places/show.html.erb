@@ -1,5 +1,19 @@
-<p id="notice"><%= notice %></p>
+<%= render "neighborhoods/header" %>
 
+<section id="place-details">
+  <div>
+    <p>
+      <h2><%= @place.name %></h2> 
+      <%= link_to "(edit)", edit_neighborhood_place_path(@neighborhood, @place) if @place.user = current_user %>
+    </p>
+    <span>
+      <strong><%= @place.street_address %></strong>
+      <%= @place.neighborhood.city.name + ", " + @place.neighborhood.city.state.name + " " + @place.zipcode.to_s   %>
+    </span>
+    <p><%= link_to @place.website, "http://www.#{@place.website}", target: "_blank" %></p>
+  </div>
+  <div>
+    <%= image_tag @place.photos.last.image.url(:medium) %>
+  </div>
+</section>
 
-<%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path %>

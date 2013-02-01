@@ -11,6 +11,7 @@ class PlacesController < ApplicationController
   end
 
   def show
+    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     @place = Place.find(params[:id])
 
     respond_to do |format|
@@ -32,6 +33,8 @@ class PlacesController < ApplicationController
 
   def edit
     @place = Place.find(params[:id])
+    @neighborhood = Neighborhood.find(params[:neighborhood_id])
+    set_categories
   end
 
   def create
@@ -49,16 +52,13 @@ class PlacesController < ApplicationController
 
   def update
     @place = Place.find(params[:id])
+    @neighborhood = Neighborhood.find(params[:neighborhood_id])
 
-    respond_to do |format|
       if @place.update_attributes(params[:place])
-        format.html { redirect_to @place, notice: 'Place was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to neighborhood_place_path(@neighborhood, @place)
       else
-        format.html { render action: "edit" }
-        format.json { render json: @place.errors, status: :unprocessable_entity }
+        redirect_to edit_neighborhood_place_path(@neighborhood, @place)
       end
-    end
   end
 
   def destroy

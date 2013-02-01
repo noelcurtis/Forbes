@@ -1,0 +1,47 @@
+<%= form_for @place, url: neighborhood_places_path(@neighborhood), html: { multipart: true } do |f| %>
+  <% if @place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
+
+      <ul>
+      <% @place.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :neighborhood_id, value: @neighborhood.id %>
+  <div class="actions">
+    <%= f.select :category, options_for_select(@categories), prompt: "Select a Category" %>
+  </div>
+  <div class="actions">
+    <%= f.text_field :name, placeholder: "Business or Place Name" %>
+  </div>
+  <div class="actions">
+    <%= f.text_field :street_address, placeholder: "Street Address" %>
+  </div>
+  <div class="actions">
+    <%= text_field_tag "city-state", nil, placeholder: "#{@neighborhood.city.name}/#{@neighborhood.city.state.name}", disabled: true %>
+  </div>
+  <div class="actions">
+    <%= f.text_field :zipcode, placeholder: "Zipcode" %>
+  </div>
+  <div class="actions">
+    <%= f.text_field :website, placeholder: "Website (e.g. starbucks.com)" %>
+  </div>
+  <div class="actions">
+    <%= f.text_field :phone, placeholder: "Phone Number (e.g. 5135554736)" %>
+  </div>
+  <div class="actions">
+    <%= f.text_area :description, placeholder: "Description" %>
+  </div>
+  <div class="actions">
+    <span>Upload Photo: </span>
+    <%= file_field_tag 'image' %></div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,6 +1,6 @@
-<h1>Editing place</h1>
+<%= render "neighborhoods/header" %>
 
-<%= render 'form' %>
+<h2>Editing <%= @place.name %></h2>
 
-<%= link_to 'Show', @place %> |
-<%= link_to 'Back', places_path %>
+<%= render 'edit_form' %>
+
