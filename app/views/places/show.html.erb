@@ -4,7 +4,7 @@
   <div>
     <p>
       <h2><%= @place.name %></h2> 
-      <%= link_to "(edit)", edit_neighborhood_place_path(@neighborhood, @place) if @place.user = current_user %>
+      <%= link_to "(edit)", edit_neighborhood_place_path(@neighborhood, @place) if @place.user == current_user %>
     </p>
     <span>
       <strong><%= @place.street_address %></strong>
