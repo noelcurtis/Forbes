@@ -6,7 +6,7 @@ class CreatePlaces < ActiveRecord::Migration
       t.string  :street_address
       t.integer :zipcode
       t.string  :website
-      t.integer :phone
+      t.string  :phone
       t.text    :description
       t.integer :neighborhood_id
 

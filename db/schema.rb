@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20130201144010) do
     t.string   "street_address"
     t.integer  "zipcode"
     t.string   "website"
-    t.integer  "phone"
+    t.string   "phone"
     t.text     "description"
     t.integer  "neighborhood_id"
     t.datetime "created_at",      :null => false
