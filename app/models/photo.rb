@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :image, :user_id, :neighborhood_id
+  attr_accessible :image, :user_id, :neighborhood_id, :place_id
   
   has_attached_file :image, :styles => { :neighborhood_thumbnail  => "95x75>",
                                          :medium                  => "300x300>" },
@@ -7,6 +7,7 @@ class Photo < ActiveRecord::Base
  
   belongs_to :user
   belongs_to :neighborhood 
+  belongs_to :place
   
   validates_presence_of :user_id
 end

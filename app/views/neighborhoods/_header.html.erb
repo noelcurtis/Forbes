@@ -7,7 +7,7 @@
       <li><%= link_to "Home", "/users/#{current_user.id}/main_feed" %></li>
       <li>People</li>
       <li>Events</li>
-      <li>Places</li>
+      <li><%= link_to "Places", neighborhood_places_path(@neighborhood) %></li>
       <li>Gallery</li>
       <li>More</li>
     </ul>

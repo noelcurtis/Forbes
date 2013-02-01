@@ -1,0 +1,6 @@
+<div class="place-thumbnail">
+  <%= link_to(image_tag(place.photos.first.image.url(:medium)), neighborhood_place_path(@neighborhood, place)) unless place.photos.empty? %>
+  <p><%= link_to place.name, neighborhood_place_path(@neighborhood, place) %></p>
+  <p><%= place.street_address %></p>
+  <p><%= link_to "Favorites", "#" %> | <%= link_to "Reviews" %></p>
+</div>

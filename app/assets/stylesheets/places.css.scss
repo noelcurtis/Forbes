@@ -1,0 +1,37 @@
+#places-index {
+  width: 70%;
+  display: inline-block;
+  float: left;
+  margin-top: 20px;
+
+  h2 {
+    display: inline;
+  }
+}
+
+#places-categories {
+  width: 25%;
+  display: inline-block;
+  float: right;
+}
+
+.place-thumbnail{
+  display: inline-block;
+  width: 45%;
+  height: 85px;
+  margin: 5px;
+  border: 2px solid black;
+
+  p {
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  img {
+    vertical-align: center;
+    float: left;
+    height: 100%;
+    width: 95px;
+    margin-right: 10px;
+  }
+}
