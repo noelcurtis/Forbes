@@ -14,11 +14,12 @@ Neighborhoods::Application.routes.draw do
     resources :posts
   end
 
-  match "neighborhoods/find"              => "neighborhoods#find"
-  match "neighborhoods/:id/preview"       => "neighborhoods#preview"
-  match "neighborhoods/:id/join"          => "neighborhoods#join" 
-  match "neighborhoods/:id/select_photos" => "neighborhoods#select_photos"
-  match "neighborhoods/:id/add_photos"     => "neighborhoods#add_photos",    :via => :post
+  match "neighborhoods/find"                                => "neighborhoods#find"
+  match "neighborhoods/:id/preview"                         => "neighborhoods#preview"
+  match "neighborhoods/:id/join"                            => "neighborhoods#join" 
+  match "neighborhoods/:id/select_photos"                   => "neighborhoods#select_photos"
+  match "neighborhoods/:id/add_photos"                      => "neighborhoods#add_photos",    :via => :post
+  match "neighborhoods/:id/add_to_favorites"   => "favorites#add_to_favorites",  :via => :post
   
   resources :neighborhoods do
     resources :posts
@@ -26,4 +27,6 @@ Neighborhoods::Application.routes.draw do
       resources :posts
     end
   end
+  
+  match "neighborhoods/:neighborhood_id/places/:id/add_to_favorites" => "favorites#add_to_favorites", :via => :post
 end

@@ -2,5 +2,5 @@
   <%= image_tag neighborhood.photos.first.image.url(:medium) unless neighborhood.photos.empty? %>
   <p><%= link_to neighborhood.name, "#{neighborhood.id}/preview", remote: true %></p>
   <p>People: </p>
-  <p>Favorites: </p>
+  <p>Favorites: <%= neighborhood.favorites.count %></p>
 </div>

@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :photos
   has_many :places
+  has_many :favorites
 
   def full_name
     self.first_name + " " + self.last_name

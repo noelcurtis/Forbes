@@ -2,6 +2,7 @@
   <%= flash[:notice] if flash %>
   <h1><%= link_to @neighborhood.name, @neighborhood %></h1>
   <%= link_to "Join Neighborhood", "/neighborhoods/#{@neighborhood.id}/join" unless current_user.neighborhoods.include?(@neighborhood) %>
+  <%= link_to("Favorite", "add_to_favorites", method: :post) unless already_favorited?(@neighborhood) %>
   <nav>
     <ul>
       <li><%= link_to "Home", "/users/#{current_user.id}/main_feed" %></li>
