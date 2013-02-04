@@ -22,6 +22,8 @@ Neighborhoods::Application.routes.draw do
   
   resources :neighborhoods do
     resources :posts
-    resources :places
+    resources :places do
+      resources :posts
+    end
   end
 end

@@ -16,4 +16,8 @@
     <%= image_tag @place.photos.last.image.url(:medium) %>
   </div>
 </section>
+<section>
+  <%= render "posts/form" %>
+  <%= render @posts %>
+</section>
 

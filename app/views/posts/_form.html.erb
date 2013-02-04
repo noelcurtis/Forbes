@@ -1,4 +1,4 @@
-<%= form_for @post do |f| %>
+<%= form_for @post, url: @submit_post_url do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -12,6 +12,9 @@
   <% end %>
 
   <div class="actions">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field(:neighborhood_id, :value =>  @neighborhood.id) if defined? @neighborhood %>
+    <%= f.hidden_field(:place_id, :value =>  @place.id) if defined? @place %>
     <%= f.text_field :content, placeholder: "Share something..." %>
   </div>
 <% end %>

@@ -4,4 +4,5 @@ class Place < ActiveRecord::Base
   belongs_to :neighborhood
   belongs_to :user
   has_many :photos
+  has_many :posts
 end

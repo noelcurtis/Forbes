@@ -1,8 +1,9 @@
 class PlacesController < ApplicationController
+  before_filter :set_neighborhood
+  before_filter :set_categories, only: [:index, :new, :edit]
+
   def index
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     @places = @neighborhood.places
-    set_categories
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,8 +12,10 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     @place = Place.find(params[:id])
+    @posts = @place.posts
+    @post = Post.new
+    @submit_post_url = neighborhood_place_posts_path(@neighborhood, @place)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,9 +24,7 @@ class PlacesController < ApplicationController
   end
 
   def new
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     @place = Place.new
-    set_categories
 
     respond_to do |format|
       format.html # new.html.erb
@@ -33,12 +34,9 @@ class PlacesController < ApplicationController
 
   def edit
     @place = Place.find(params[:id])
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
-    set_categories
   end
 
   def create
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     @place = Place.new(params[:place])
 
     if @place.save
@@ -52,7 +50,6 @@ class PlacesController < ApplicationController
 
   def update
     @place = Place.find(params[:id])
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
 
       if @place.update_attributes(params[:place])
         redirect_to neighborhood_place_path(@neighborhood, @place)
@@ -75,5 +72,9 @@ class PlacesController < ApplicationController
 
   def set_categories
     @categories = [ ['Restaurant', 'Restaurant'], ['Park', 'Park'], ['School', 'School'], ['Bar', 'Bar'] ]
+  end
+
+  def set_neighborhood
+    @neighborhood = Neighborhood.find(params[:neighborhood_id])
   end
 end
