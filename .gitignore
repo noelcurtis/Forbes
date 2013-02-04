@@ -14,3 +14,6 @@
 /log/*.log
 /tmp
 /public/system/photos/images/*
+
+# Ignore RubyMine settings
+.idea
