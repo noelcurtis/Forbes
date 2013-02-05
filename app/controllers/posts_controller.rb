@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-   
+  before_filter :authenticate_user!
+ 
   def index
     @posts = Post.all
   end
@@ -21,7 +22,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     if @post.save! 
-      puts "+++++++++++++++++++++++++++++++++"
       set_vars_based_on_params
       redirect_by_post_type
     end

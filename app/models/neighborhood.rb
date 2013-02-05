@@ -7,6 +7,8 @@ class Neighborhood < ActiveRecord::Base
   has_many :photos
   has_many :places
   has_many :favorites
+  has_many :ownerships
+  has_many :owners, through: :ownerships
   
   validates_presence_of   :name
   validates_uniqueness_of :name, :scope => :city_id

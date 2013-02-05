@@ -3,6 +3,7 @@
   <h1><%= link_to @neighborhood.name, @neighborhood %></h1>
   <%= link_to "Join Neighborhood", "/neighborhoods/#{@neighborhood.id}/join" unless current_user.neighborhoods.include?(@neighborhood) %>
   <%= link_to("Favorite", "/neighborhoods/#{@neighborhood.id}/add_to_favorites", method: :post) unless already_favorited?(@neighborhood) %>
+  <%= link_to("(edit)") if is_owner?(@neighborhood) %>
   <nav>
     <ul>
       <li><%= link_to "Home", "/users/#{current_user.id}/main_feed" %></li>

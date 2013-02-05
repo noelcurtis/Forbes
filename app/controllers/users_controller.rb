@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :allow_if_current_user, only: [:main_feed, :edit, :update]
 
   def add_neighborhood
     neighborhood = Neighborhood.find(params[:neighborhood_id])
@@ -11,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def main_feed
-    @user = User.find(params[:id]) 
   end
 
   def show
@@ -19,12 +19,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    
     if @user.update_attributes(params[:user])
       if !params[:image].nil?
         photo = Photo.new(image: params[:image], user_id: @user.id) 
@@ -38,4 +35,9 @@ class UsersController < ApplicationController
     end
   end
 
+  private
+    def allow_if_current_user
+      @user = User.find(params[:id])
+      redirect_to root_path unless @user == current_user
+    end
 end

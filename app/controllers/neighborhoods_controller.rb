@@ -1,5 +1,7 @@
 class NeighborhoodsController < ApplicationController
+  include OwnershipsHelper
   before_filter :authenticate_user!
+  before_filter :allow_if_owner, only: [:edit, :update, :destroy]
   
   def find
     @user = current_user
@@ -38,6 +40,7 @@ class NeighborhoodsController < ApplicationController
       current_user.save
       photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id)
       photo.save
+      ownership = current_user.ownerships.build(neighborhood_id: @neighborhood.id).save
       redirect_to @neighborhood
     elsif @neighborhood.errors.messages.values.include?(["can't be blank"])
       redirect_to :action => "find"
@@ -67,5 +70,21 @@ class NeighborhoodsController < ApplicationController
     @photo.save
     @neighborhood.photos << @photo
     redirect_to @neighborhood 
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  private
+
+  def allow_if_owner
+    @neighborhood = Neighborhood.find(params[:id])
+    redirect_to root_path unless is_owner?(@neighborhood)
   end
 end

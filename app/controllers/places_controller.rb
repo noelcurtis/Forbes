@@ -1,6 +1,10 @@
 class PlacesController < ApplicationController
+  include OwnershipsHelper
+
+  before_filter :authenticate_user!
   before_filter :set_neighborhood
   before_filter :set_categories, only: [:index, :new, :edit]
+  before_filter :allow_if_owner, only: [:edit, :update, :destroy]
 
   def index
     @places = @neighborhood.places
@@ -33,7 +37,6 @@ class PlacesController < ApplicationController
   end
 
   def edit
-    @place = Place.find(params[:id])
   end
 
   def create
@@ -42,6 +45,7 @@ class PlacesController < ApplicationController
     if @place.save
       photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id, place_id: @place.id)
       photo.save
+      ownership = current_user.ownerships.build(place_id: @place.id).save
       redirect_to neighborhood_place_path(@neighborhood, @place)
     else
       redirect_to new_neighborhood_place_path(@neighborhood)
@@ -49,8 +53,6 @@ class PlacesController < ApplicationController
   end
 
   def update
-    @place = Place.find(params[:id])
-
       if @place.update_attributes(params[:place])
         redirect_to neighborhood_place_path(@neighborhood, @place)
       else
@@ -59,7 +61,6 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-    @place = Place.find(params[:id])
     @place.destroy
 
     respond_to do |format|
@@ -76,5 +77,10 @@ class PlacesController < ApplicationController
 
   def set_neighborhood
     @neighborhood = Neighborhood.find(params[:neighborhood_id])
+  end
+
+  def allow_if_owner
+    @place = Place.find(params[:id])
+    redirect_to root_path unless is_owner?(@place)
   end
 end

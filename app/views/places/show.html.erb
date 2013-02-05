@@ -4,8 +4,8 @@
   <div>
     <p>
       <h2><%= @place.name %></h2> 
-      <%= link_to "(edit)", edit_neighborhood_place_path(@neighborhood, @place) if @place.user == current_user %>
       <%= link_to("Favorite", "#{@place.id}/add_to_favorites", method: :post) unless already_favorited?(@place) %>
+      <%= link_to "(edit)", edit_neighborhood_place_path(@neighborhood, @place) if is_owner?(@place) %>
     </p>
     <span>
       <strong><%= @place.street_address %></strong>

@@ -6,4 +6,6 @@ class Place < ActiveRecord::Base
   has_many :photos
   has_many :posts
   has_many :favorites
+  has_many :ownerships
+  has_many :owners, through: :ownerships
 end

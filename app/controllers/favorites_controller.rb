@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  before_filter :authenticate_user!
 
   def add_to_favorites
     favorite = Favorite.new
