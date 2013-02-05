@@ -1,8 +1,10 @@
 Neighborhoods::Application.routes.draw do
+ 
   resources :places
   resources :photos
   resources :posts
   resources :places
+  resources :friendships, only: [:create, :destroy]
 
   devise_for :users, :controllers => { :registrations => "registrations" }
   root :to => redirect("/users/sign_up")

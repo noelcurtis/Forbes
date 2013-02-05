@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :photos
   has_many :places
   has_many :favorites
+  has_many :friendships
+  has_many :friends, through: :friendships
 
   def full_name
     self.first_name + " " + self.last_name
