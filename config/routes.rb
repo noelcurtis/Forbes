@@ -14,6 +14,7 @@ Neighborhoods::Application.routes.draw do
   
   resources :users do
     resources :posts
+    resources :friendships, only: [:index]
   end
 
   match "neighborhoods/find"                                => "neighborhoods#find"
