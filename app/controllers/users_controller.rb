@@ -6,12 +6,19 @@ class UsersController < ApplicationController
     neighborhood = Neighborhood.find(params[:neighborhood_id])
     user = User.find(params[:id])
     user.neighborhoods << neighborhood
-    if user.save
+    if user.save 
       redirect_to action: "main_feed", :id => user.id
     end
   end
 
   def main_feed
+    @all_friends_posts = Post.where(:user_id => current_user.friends).order("created_at DESC").limit(8)
+    @neighborhood_friends_posts = Post.where(user_id: current_user.friends, neighborhood_id: current_user.neighborhoods).order("created_at DESC").limit(30)
+    if current_user.friends.empty?
+      @suggested_friends = User.where("id != ?", current_user.id).limit(5)
+    else  
+      @suggested_friends = User.where("id not in (?) AND id != ?", current_user.friends, current_user.id).limit(5)
+    end
   end
 
   def show

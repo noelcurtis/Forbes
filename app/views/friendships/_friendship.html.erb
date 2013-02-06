@@ -1,2 +1,4 @@
-<%= friendship.friend.full_name %>
-<%= link_to "(unfriend)", friendship, method: :delete if @user == current_user %>
+<p>
+  <%= friendship.friend.full_name %>
+  <%= link_to "(unfriend)", friendship, method: :delete if @user == current_user %>
+</p>

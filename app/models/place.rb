@@ -4,8 +4,8 @@ class Place < ActiveRecord::Base
   belongs_to :neighborhood
   belongs_to :user
   has_many :photos
-  has_many :posts
-  has_many :favorites
-  has_many :ownerships
+  has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :ownerships, dependent: :destroy
   has_many :owners, through: :ownerships
 end
