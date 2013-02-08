@@ -10,6 +10,7 @@ class NeighborhoodsController < ApplicationController
   def join
     @neighborhood = Neighborhood.find(params[:id])
     current_user.neighborhoods << @neighborhood
+    flash[:success] = "You've successfully joined this neighborhood"
     redirect_to @neighborhood
   end
 
@@ -41,6 +42,7 @@ class NeighborhoodsController < ApplicationController
       photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id)
       photo.save
       ownership = current_user.ownerships.build(neighborhood_id: @neighborhood.id).save
+      flash[:success] = "Neighborhod successfully created"
       redirect_to @neighborhood
     elsif @neighborhood.errors.messages.values.include?(["can't be blank"])
       redirect_to :action => "find"

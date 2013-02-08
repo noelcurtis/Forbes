@@ -3,17 +3,22 @@ class UsersController < ApplicationController
   before_filter :allow_if_current_user, only: [:main_feed, :edit, :update]
 
   def add_neighborhood
-    neighborhood = Neighborhood.find(params[:neighborhood_id])
+    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     user = User.find(params[:id])
-    user.neighborhoods << neighborhood
-    if user.save 
-      redirect_to action: "main_feed", :id => user.id
+    if user.neighborhoods.include? @neighborhood
+      flash[:notice] = "You already belong to this neighborhood"
+    else
+      user.neighborhoods << @neighborhood 
+      flash[:success] = "You've successfully joined this neighborhood"
     end
+    redirect_to @neighborhood 
   end
 
   def main_feed
     @all_friends_posts = Post.where(:user_id => current_user.friends).order("created_at DESC").limit(8)
-    @neighborhood_friends_posts = Post.where(user_id: current_user.friends, neighborhood_id: current_user.neighborhoods).order("created_at DESC").limit(30)
+    @neighborhood_friends_posts = Post.where(user_id: current_user.friends, neighborhood_id: current_user.neighborhoods)
+                                      .order("created_at DESC")
+                                      .limit(30)
     if current_user.friends.empty?
       @suggested_friends = User.where("id != ?", current_user.id).limit(5)
     else  
@@ -36,8 +41,10 @@ class UsersController < ApplicationController
         @user.profile_picture_id = photo.id
         @user.save
       end    
+      flash[:success] = "Profile successfully updated"
       redirect_to @user
     else
+      flash[:error] = "Unable to update your profile"
       render action: "edit" 
     end
   end

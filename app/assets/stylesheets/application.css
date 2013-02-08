@@ -18,4 +18,29 @@
   padding-top: 10px;
 }
 
+.success {
+  color: green;
+}
 
+.notice {
+  color: orange;
+}
+
+.error {
+  color: red;
+}
+
+.mini-thumbnail {
+  width: 30px;
+  height: 30px;
+}
+
+.thumbnail {
+  width: 47px;
+  height: 47px;
+}
+
+.large-thumbnail {
+  width: 60px;
+  height: 60px; 
+}

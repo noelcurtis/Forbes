@@ -1,6 +1,17 @@
 <h3>People: </h3>
 <hr />
+<% for user in @neighborhood.users %>
+    <%= image_tag user.profile_picture, class: "mini-thumbnail" %>
+<% end %>
 <h3>Places: </h3>
 <hr />
+  <% for place in @neighborhood.places %>
+    <div>
+      <%= image_tag(place.photos.first.image.url(:small), class: "mini-thumbnail") unless place.photos.empty? %>
+      <%= place.name %>
+    </div>
+  <% end %>
+<br />
+<br />
 <h3>Events: </h3>
 <hr />

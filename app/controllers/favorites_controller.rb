@@ -11,8 +11,10 @@ class FavoritesController < ApplicationController
     end
     favorite.save!
     if params[:neighborhood_id].nil?
+      flash[:success] = "This neighborhood is now one of your favorites"
       redirect_to controller: "neighborhoods", action: "show", id: params[:id]
     else
+      flash[:success] = "This place is now one of your favorites"
       redirect_to controller: "places", action: "show", neighborhood_id: params[:neighborhood_id], id: params[:id]
     end
   end

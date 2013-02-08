@@ -20,6 +20,15 @@
         <% end %>
       </nav>
     </header>
+    <% if flash[:error] %>
+      <p class='error'><%=h flash[:error] %></p>
+    <% end -%>
+    <% if flash[:notice] %>
+      <p class='notice'><%=h flash[:notice] %></p>
+    <% end -%>
+    <% if flash[:success] %>
+      <p class='success'><%=h flash[:success] %></p>
+    <% end -%>
     <%= yield %>
   </div>
 </body>
