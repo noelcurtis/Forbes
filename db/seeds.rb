@@ -1,8 +1,13 @@
 require 'csv'
 
-file = CSV.read("db/seeds/indian_states_and_cities.csv")
+file = CSV.read("db/seeds/GeoPC_IN.csv")
 
-file.each do |pair|
-  State.create!(name: pair.last) unless State.exists?(name: pair.last)
-  City.create!(name: pair.first, state_id: State.find_by_name(pair.last).id)
+count = 0
+file.each do |location|
+  unless count == 0
+    State.create!(name: location[4]) unless State.exists?(name: location[4])
+    City.create!(name: location[9], state_id: State.find_by_name(location[4]).id)
+  end
+  count += 1
+  puts count
 end
