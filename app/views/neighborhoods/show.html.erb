@@ -6,7 +6,7 @@
 </section>
 
 <section id="neighborhood_details">
-  <%= link_to "Add Photos", "/neighborhoods/#{@neighborhood.id}/select_photos" %>
+  <%= link_to "Add Photos", "/neighborhoods/#{@neighborhood.id}/select_photos", id: "myclass" %>
   <%= image_tag @neighborhood.photos.first.image.url(:medium), class: "neighborhood-main-photo" unless @neighborhood.photos.empty? %>
   <% @neighborhood.photos.each do |photo| %>
     <%= image_tag photo.image.url(:medium), class: "neighborhood-photo-thumb" %>
