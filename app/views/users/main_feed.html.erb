@@ -1,17 +1,32 @@
 <section id="left_feed">
-  <h4>Profile Name</h4>
+  <%= link_to(image_tag(@user.profile_picture(:small), class: "mini-thumbnail"), @user) %>
+  <h4><%= link_to current_user.full_name, current_user %></h4>
   <section>
     <h5>Jump to a neighborhood...</h5>
     <% @user.neighborhoods.each do |neighborhood| %>
       <p><%= link_to neighborhood.name, neighborhood_path(neighborhood) %></p>
     <% end %>
+    <%= link_to "Find more neighborhoods...", "/neighborhoods/find" %>
   </section>
 </section>
 <section id="center_feed">
   <h4>My Neighborhood Friend Activity</h4>
   <hr />
+  <%= render @neighborhood_friends_posts %>
 </section>
 <section id="right_feed">
   <h5>All Friends Activity</h5>
   <hr />
+    <% for post in @all_friends_posts %>
+      <p>
+        <%= link_to(image_tag(post.user.profile_picture, class: "mini-thumbnail"), post.user) %>
+        <%= link_to post.user.full_name, post.user %> from <%= link_to post.neighborhood.name, post.neighborhood %>
+      </p>
+      <p><%= post.content %></p>
+    <% end %>
+  <h5>Suggested Friends</h5>
+  <hr />
+  <% for person in @suggested_friends %>
+    <p><%= link_to person.full_name, person %> <%= link_to "Add", friendships_path(friend_id: person), method: :post %></p>
+  <% end %>
 </section>

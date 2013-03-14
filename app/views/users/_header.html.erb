@@ -1,13 +1,14 @@
 <header id="user_header">
   <h1><%= @user.full_name %></h1>
   <span><%= link_to "(edit profile)", edit_user_path(@user) if @user == current_user %></span> 
+  <span><%= link_to("Add Friend", friendships_path(friend_id: @user), method: :post) unless (@user == current_user or already_friends?(@user)) %></span>
   <div>Cover Photo</div>
   <nav>
     <ul>
       <li>Activity</li>
       <li>About</li>
       <li>Photos</li>
-      <li>Friends</li>
+      <li><%= link_to "Friends", user_friendships_path(@user) %></li>
       <li>Favorites</li>
     </ul>
   </nav>

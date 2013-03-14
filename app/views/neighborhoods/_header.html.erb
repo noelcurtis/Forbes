@@ -1,7 +1,8 @@
 <header id="neighborhood_header">
-  <%= flash[:notice] if flash %>
   <h1><%= link_to @neighborhood.name, @neighborhood %></h1>
   <%= link_to "Join Neighborhood", "/neighborhoods/#{@neighborhood.id}/join" unless current_user.neighborhoods.include?(@neighborhood) %>
+  <%= link_to("Favorite", "/neighborhoods/#{@neighborhood.id}/add_to_favorites", method: :post) unless already_favorited?(@neighborhood) %>
+  <%= link_to("(edit)") if is_owner?(@neighborhood) %>
   <nav>
     <ul>
       <li><%= link_to "Home", "/users/#{current_user.id}/main_feed" %></li>
@@ -13,10 +14,6 @@
     </ul>
   </nav>
   <% @neighborhood.users.each do |user| %>
-    <% if user.has_profile_picture? %>
-      <%= link_to(image_tag(user.profile_picture.image.url(:medium)), user) %>
-    <% else %>
-      <%= link_to(image_tag("missing_profile_picture.png"), user) %>
-    <% end %>
+      <%= link_to(image_tag(user.profile_picture(:small), class: "large-thumbnail"), user) %>
   <% end %>
 </header>

@@ -1,8 +1,10 @@
 Neighborhoods::Application.routes.draw do
+ 
   resources :places
   resources :photos
   resources :posts
   resources :places
+  resources :friendships, only: [:create, :destroy]
 
   devise_for :users, :controllers => { :registrations => "registrations" }
   root :to => redirect("/users/sign_up")
@@ -12,16 +14,22 @@ Neighborhoods::Application.routes.draw do
   
   resources :users do
     resources :posts
+    resources :friendships, only: [:index]
   end
 
-  match "neighborhoods/find"              => "neighborhoods#find"
-  match "neighborhoods/:id/preview"       => "neighborhoods#preview"
-  match "neighborhoods/:id/join"          => "neighborhoods#join" 
-  match "neighborhoods/:id/select_photos" => "neighborhoods#select_photos"
-  match "neighborhoods/:id/add_photos"     => "neighborhoods#add_photos",    :via => :post
+  match "neighborhoods/find"                                => "neighborhoods#find"
+  match "neighborhoods/:id/preview"                         => "neighborhoods#preview"
+  match "neighborhoods/:id/join"                            => "neighborhoods#join" 
+  match "neighborhoods/:id/select_photos"                   => "neighborhoods#select_photos"
+  match "neighborhoods/:id/add_photos"                      => "neighborhoods#add_photos",    :via => :post
+  match "neighborhoods/:id/add_to_favorites"   => "favorites#add_to_favorites",  :via => :post
   
   resources :neighborhoods do
     resources :posts
-    resources :places
+    resources :places do
+      resources :posts
+    end
   end
+  
+  match "neighborhoods/:neighborhood_id/places/:id/add_to_favorites" => "favorites#add_to_favorites", :via => :post
 end

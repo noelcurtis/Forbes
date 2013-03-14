@@ -1,14 +1,10 @@
 <article class="post">
-  <% if post.user.has_profile_picture? %> 
-    <%= link_to(image_tag(post.user.profile_picture.image.url(:medium)), post.user) %>
-  <% else %>
-    <%= link_to(image_tag("missing_profile_picture.png"), post.user) %>
-  <% end %>
+  <%= link_to(image_tag(post.user.profile_picture, class: "thumbnail"), post.user) %>
   <%= link_to(post.user.first_name, post.user) %> 
   <span class="date"><%=  post.created_at.strftime("%l:%M %p %m/%d/%y") %></span>
   <% if post.user == current_user %>
-    <%= link_to "edit", edit_neighborhood_post_path(@neighborhood, post) %> |
-    <%= link_to 'delete', neighborhood_post_path(@neighborhood, post), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to "edit", get_edit_path(post) %> |
+    <%= link_to 'delete', get_delete_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
   <p><%= post.content %><p>
 </article>

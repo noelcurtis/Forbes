@@ -1,0 +1,50 @@
+#main_container {
+  width: 80%;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.success {
+  color: green;
+}
+
+.notice {
+  color: orange;
+}
+
+.error {
+  color: red;
+}
+
+.mini-thumbnail {
+  width: 30px;
+  height: 30px;
+}
+
+.thumbnail {
+  width: 47px;
+  height: 47px;
+}
+
+.large-thumbnail {
+  width: 60px;
+  height: 60px; 
+}
+
+@import 'bootstrap';
+@import 'favorites';
+@import 'feeds';
+@import 'find_neighborhoods';
+@import 'forms';
+@import 'friendships';
+@import 'headers';
+@import 'home';
+@import 'navigation';
+@import 'neighborhoods';
+@import 'ownerships';
+@import 'photos';
+@import 'places';
+@import 'posts';
+@import 'scaffolds';
+@import 'signup_page';
+@import 'users';

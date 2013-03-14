@@ -11,11 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201144010) do
+ActiveRecord::Schema.define(:version => 20130205195833) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
     t.integer  "state_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "favorites", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "neighborhood_id"
+    t.integer  "place_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "friendships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -31,6 +46,14 @@ ActiveRecord::Schema.define(:version => 20130201144010) do
   create_table "neighborhoods_users", :id => false, :force => true do |t|
     t.integer "neighborhood_id"
     t.integer "user_id"
+  end
+
+  create_table "ownerships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "neighborhood_id"
+    t.integer  "place_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -65,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20130201144010) do
     t.text     "content"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "place_id"
   end
 
   create_table "states", :force => true do |t|

@@ -1,12 +1,12 @@
 <div id="find_neighborhood_container">
-  <section id="welcome_message">
-    <h1><%= "Welcome, #{@user.first_name}!" %></h1>
-    <p>
-      In order for use to best serve you we need to know which neighborhood 
-      you live in. This will be your primary neighborhood. Don't worry, you
+    <section id="welcome_message">
+      <h1><%= "Welcome, #{@user.first_name}!" %></h1>
+      <p>
+        In order for use to best serve you we need to know which neighborhood 
+        you live in. This will be your primary neighborhood. Don't worry, you
       can change this later if you want to.
-    </p>
-  </section>
+      </p>
+    </section>
   <section id="find_neighborhood">
     <div>
       <%= select_tag( :state_id, options_from_collection_for_select( State.order(:name), :id, :name), prompt: "Select a State") %>

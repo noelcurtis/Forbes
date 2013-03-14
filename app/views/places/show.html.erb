@@ -4,16 +4,22 @@
   <div>
     <p>
       <h2><%= @place.name %></h2> 
-      <%= link_to "(edit)", edit_neighborhood_place_path(@neighborhood, @place) if @place.user == current_user %>
+      <%= link_to("Favorite", "#{@place.id}/add_to_favorites", method: :post) unless already_favorited?(@place) %>
+      <%= link_to "(edit)", edit_neighborhood_place_path(@neighborhood, @place) if is_owner?(@place) %>
     </p>
     <span>
       <strong><%= @place.street_address %></strong>
       <%= @place.neighborhood.city.name + ", " + @place.neighborhood.city.state.name + " " + @place.zipcode.to_s   %>
     </span>
+    <p><%= pluralize(@place.favorites.count, 'Favorite') %></p>
     <p><%= link_to @place.website, "http://www.#{@place.website}", target: "_blank" %></p>
   </div>
   <div>
     <%= image_tag @place.photos.last.image.url(:medium) %>
   </div>
+</section>
+<section>
+  <%= render "posts/form" %>
+  <%= render @posts %>
 </section>
 

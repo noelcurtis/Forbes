@@ -1,8 +1,13 @@
 class PlacesController < ApplicationController
+  include OwnershipsHelper
+
+  before_filter :authenticate_user!
+  before_filter :set_neighborhood
+  before_filter :set_categories, only: [:index, :new, :edit]
+  before_filter :allow_if_owner, only: [:edit, :update, :destroy]
+
   def index
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     @places = @neighborhood.places
-    set_categories
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,8 +16,10 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     @place = Place.find(params[:id])
+    @posts = @place.posts
+    @post = Post.new
+    @submit_post_url = neighborhood_place_posts_path(@neighborhood, @place)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,9 +28,7 @@ class PlacesController < ApplicationController
   end
 
   def new
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     @place = Place.new
-    set_categories
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,48 +37,48 @@ class PlacesController < ApplicationController
   end
 
   def edit
-    @place = Place.find(params[:id])
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
-    set_categories
   end
 
   def create
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
     @place = Place.new(params[:place])
 
     if @place.save
       photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id, place_id: @place.id)
       photo.save
+      ownership = current_user.ownerships.build(place_id: @place.id).save
+      flash[:success] = "This place was successfully created"
       redirect_to neighborhood_place_path(@neighborhood, @place)
     else
+      flash[:error] = "Unable to create this place"
       redirect_to new_neighborhood_place_path(@neighborhood)
     end
   end
 
   def update
-    @place = Place.find(params[:id])
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
-
       if @place.update_attributes(params[:place])
+        flash[:success] = "Update successful"
         redirect_to neighborhood_place_path(@neighborhood, @place)
       else
+        flash[:error] = "Unable to update this place"
         redirect_to edit_neighborhood_place_path(@neighborhood, @place)
       end
   end
 
   def destroy
-    @place = Place.find(params[:id])
-    @place.destroy
-
-    respond_to do |format|
-      format.html { redirect_to places_url }
-      format.json { head :no_content }
-    end
   end
 
   private
 
   def set_categories
     @categories = [ ['Restaurant', 'Restaurant'], ['Park', 'Park'], ['School', 'School'], ['Bar', 'Bar'] ]
+  end
+
+  def set_neighborhood
+    @neighborhood = Neighborhood.find(params[:neighborhood_id])
+  end
+
+  def allow_if_owner
+    @place = Place.find(params[:id])
+    redirect_to root_path unless is_owner?(@place)
   end
 end

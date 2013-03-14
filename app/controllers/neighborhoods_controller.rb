@@ -1,5 +1,7 @@
 class NeighborhoodsController < ApplicationController
+  include OwnershipsHelper
   before_filter :authenticate_user!
+  before_filter :allow_if_owner, only: [:edit, :update, :destroy]
   
   def find
     @user = current_user
@@ -8,6 +10,7 @@ class NeighborhoodsController < ApplicationController
   def join
     @neighborhood = Neighborhood.find(params[:id])
     current_user.neighborhoods << @neighborhood
+    flash[:success] = "You've successfully joined this neighborhood"
     redirect_to @neighborhood
   end
 
@@ -38,6 +41,8 @@ class NeighborhoodsController < ApplicationController
       current_user.save
       photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id)
       photo.save
+      ownership = current_user.ownerships.build(neighborhood_id: @neighborhood.id).save
+      flash[:success] = "Neighborhod successfully created"
       redirect_to @neighborhood
     elsif @neighborhood.errors.messages.values.include?(["can't be blank"])
       redirect_to :action => "find"
@@ -52,6 +57,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find(params[:id])
     @posts = @neighborhood.posts.order("created_at DESC")
     @post = Post.new
+    @submit_post_url = neighborhood_posts_path(@neighborhood)
   end
 
   def select_photos
@@ -66,5 +72,21 @@ class NeighborhoodsController < ApplicationController
     @photo.save
     @neighborhood.photos << @photo
     redirect_to @neighborhood 
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  private
+
+  def allow_if_owner
+    @neighborhood = Neighborhood.find(params[:id])
+    redirect_to root_path unless is_owner?(@neighborhood)
   end
 end

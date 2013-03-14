@@ -5,4 +5,4 @@
   <%= render "neighborhood_summary", :neighborhood => @neighborhood %>  
 </section>
 <br />
-<%= link_to "Select as Primary Neighborhood", "/users/#{current_user.id}/add_neighborhood/#{@neighborhood.id}", :method => :post %>
+<%= link_to "Join Neighborhood", "/users/#{current_user.id}/add_neighborhood/#{@neighborhood.id}", :method => :post %>
