@@ -21,7 +21,7 @@
     <br />
     <div>
       <%= f.label :birthday, "Birthday" %>
-      <%= f.date_select :birthday, order: [:month, :day, :year] %>
+      <%= f.date_select :birthday, start_year: (Time.now.year - 70), end_year: (Time.now.year - 13), order: [:month, :day, :year] %>
     </div>
     <br /> 
     <div><%= f.submit "Sign up", class: 'btn' %></div>
