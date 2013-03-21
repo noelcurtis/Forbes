@@ -1,35 +1,42 @@
-<section id="site_description">
-  <h3>Connect with the people, places, and events in your neighborhood.</h3>
-  <div id="video_placeholder">Video or image explaining the site</div>
-</section>
-<section id="signup_container">
-  <h3>Sign Up</h3>
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
-
-    <div><%= f.text_field :first_name, :placeholder => "First Name", :autofocus => true %></div>
-    <div><%= f.text_field :last_name, :placeholder => "Last Name" %></div>
-    <div><%= f.email_field :email, :placeholder => "Email" %></div>
-    <div><%= f.password_field :password, :placeholder => "Password" %></div>
-    <div><%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></div>
-    <br />
-    <div>
-      <%= f.radio_button :gender, "male" %>
-      <%= f.label :gender_male, "Male" %>
-
-      <%= f.radio_button :gender, "female" %>
-      <%= f.label :gender_female, "Female" %>
+<div class="inner">
+  <div class="container">
+    <div class="row">
+      <div id="site-description" class="span7">
+        <h3><span class="orange">Connect</span> with the<br /> people, places, and events in <br /><span class="blue">your neighborhood</span>.</h3>
+        <div id="video-placeholder">Video or image explaining the site</div>
+      </div>
+      <div id="signup-form" class="span5 gradient">
+        <div class="signup-form-inner1">
+          <div class="signup-form-inner2">
+            <h3>Sign up to Forbes</h3>
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
+          
+              <div><%= f.text_field :first_name, :placeholder => "First Name", :autofocus => true %></div>
+              <div><%= f.text_field :last_name, :placeholder => "Last Name" %></div>
+              <div><%= f.email_field :email, :placeholder => "Email" %></div>
+              <div><%= f.password_field :password, :placeholder => "Password" %></div>
+              <div><%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></div>
+              <br />
+              <div>
+                <!-- TODO: need the label nested inside input so we can use twitter bootstrap. SEE http://twitter.github.com/bootstrap/base-css.html#forms-->
+                <%= f.radio_button :gender, "male" %>
+                <%= f.label :gender_male, "Male" %>
+          
+                <%= f.radio_button :gender, "female" %>
+                <%= f.label :gender_female, "Female" %>
+              </div>
+              <br />
+              <div>
+                <%= f.label :birthday, "Birthday: " %>
+                <!-- TODO: Need to put classes on each dropdown (month day and year fields) SEE http://twitter.github.com/bootstrap/base-css.html#forms-->
+                <%= f.date_select :birthday, order: [:month, :day, :year] %>
+              </div>
+          </div>
+          <div><%= f.submit "Sign up", class: 'homepage-signup btn' %></div>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <br />
-    <div>
-      <%= f.label :birthday, "Birthday: " %>
-      <%= f.date_select :birthday, order: [:month, :day, :year] %>
-    </div>
-    <br /> 
-    <div><%= f.submit "Sign up", class: 'btn' %></div>
-    <br />
-  <% end %>
-
-  <%= render "devise/shared/links" %>
-
-</section>
+  </div>
+</div>

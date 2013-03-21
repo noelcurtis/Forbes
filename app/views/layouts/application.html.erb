@@ -2,24 +2,37 @@
 <html>
 <head>
   <title>Neighborhoods</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="main_container"> 
-    <header id="main_header">
-      <div id="logo_placeholder"><%= link_to "Logo", root_path %></div>
-      <nav id="login_nav"> 
-        <% if user_signed_in? %>
-          Logged in as <strong><%= current_user.email %></strong>.
-          <%= link_to 'Edit profile', edit_user_registration_path %> |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= render "devise/sessions/new" %>
-        <% end %>
-      </nav>
-    </header>
+  <header>
+    <div class="container">
+      <div class="row">
+        <!-- TODO: put placeholder image here wih link to root path. -->
+        <div id="logo" class="span3"><%= link_to "Forbes Logo", root_path %></div>
+        <nav id="utility_nav" class="span9">
+              <ul>
+              <% if user_signed_in? %>
+              
+                <li>Logged in as <strong><%= current_user.email %></strong>.</li>
+                <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+              
+              <% else %>
+                <!-- TODO: make use of bootstrap jquery dropdown menus . SEE http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                <li id="login"><a href="#">Log in</a></li>       
+                <!--<%= render "devise/sessions/new" %>-->
+
+              <% end %>
+              </ul> 
+        </nav>
+      </div>
+    </div>
+  </header>
+  <section id="main-content">
     <% if flash[:error] %>
       <p class='error'><%=h flash[:error] %></p>
     <% end -%>
@@ -30,6 +43,13 @@
       <p class='success'><%=h flash[:success] %></p>
     <% end -%>
     <%= yield %>
-  </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="span12">Forbes Footer Info</div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
