@@ -10,4 +10,5 @@ file.each do |location|
   end
   count += 1
   puts count
+  break if count == 200 # Temporary
 end
