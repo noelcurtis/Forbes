@@ -1,26 +1,41 @@
-<div id="find_neighborhood_container">
-    <section id="welcome_message">
-      <h1><%= "Welcome, #{@user.first_name}!" %></h1>
-      <p>
-        In order for use to best serve you we need to know which neighborhood 
-        you live in. This will be your primary neighborhood. Don't worry, you
-      can change this later if you want to.
-      </p>
-    </section>
-  <section id="find_neighborhood">
-    <div>
-      <%= select_tag( :state_id, options_from_collection_for_select( State.order(:name), :id, :name), prompt: "Select a State") %>
-    </div> 
-    <div>
-      <%= grouped_collection_select( :neighborhood, :city_id, State.order(:name), :cities, :name, :id, :name) %> 
+<section id="top-main">
+    <div class="container">
+        <div class="row">
+            <div id="welcome" class="span12">
+                <div class="row">
+                    <div id="welcome-left" class="span5"><div class="inner-padding">
+                        <h1><%= "Welcome, #{@user.first_name}!" %></h1>
+                        <p>
+                          In order for use to best serve you we need to know which neighborhood 
+                          you live in. This will be your primary neighborhood. Don't worry, you
+                        can change this later if you want to.
+                        </p>
+                    </div></div>
+                    <div id="welcome-right" class="span7"><div class="inner-padding">
+                      <div>
+                        <%= select_tag( :state_id, options_from_collection_for_select( State.order(:name), :id, :name), prompt: "Select a State") %>
+                      </div> 
+                      <div>
+                        <%= grouped_collection_select( :neighborhood, :city_id, State.order(:name), :cities, :name, :id, :name) %> 
+                      </div>
+                    </div></div>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
-  <div id="neighborhood_search">
-    <%= text_field_tag('search', nil, :disabled => true, :placeholder => "Search Neighborhoods") %>
-    <span>- OR -</span>
-    <%= link_to "Create Your Own Neighborhood", new_neighborhood_path, :class => "new_neighborhood_link", remote: true %>
-  </div>
-  <br />
-  <div id="neighborhoods"></div>
-</div>
+</section>
+<section id="bottom-main">
+    <div class="container">
+        <div class="row">
+            <div id="neighborhood_search">
+                <%= text_field_tag('search', nil, :disabled => true, :placeholder => "Search Neighborhoods") %>
+                <span>- OR -</span>
+                <%= link_to "Create Your Own Neighborhood", new_neighborhood_path, :class => "new_neighborhood_link", remote: true %>
+            </div>
+            <br />
+            <div id="neighborhoods"></div>
+        </div>
+    </div>
+</section>
+
  
