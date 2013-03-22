@@ -17,18 +17,23 @@
               <div><%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></div>
               <br />
               <div>
-                <!-- TODO: need the label nested inside input so we can use twitter bootstrap. SEE http://twitter.github.com/bootstrap/base-css.html#forms-->
-                <%= f.radio_button :gender, "male" %>
-                <%= f.label :gender_male, "Male" %>
+                <%= f.label :gender_male, class: 'radio' do %>
+                  <%= f.radio_button :gender, "male" %> Male
+                <% end %>
           
-                <%= f.radio_button :gender, "female" %>
-                <%= f.label :gender_female, "Female" %>
+                <%= f.label :gender_female, class: 'radio' do %>
+                  <%= f.radio_button :gender, "female" %> Female
+                <% end %>
               </div>
               <br />
               <div>
                 <%= f.label :birthday, "Birthday:" %>
-                <!-- TODO: Need to put classes on each dropdown (month day and year fields) SEE http://twitter.github.com/bootstrap/base-css.html#forms-->
-                <%= f.date_select :birthday, start_year: (Time.now.year - 70), end_year: (Time.now.year - 13), order: [:month, :day, :year] %>
+                <%= f.date_select :birthday, 
+                  { order: [:month, :day, :year], 
+                  start_year: (Time.now.year - 70), 
+                  end_year: (Time.now.year - 13) },
+                  { class: 'input-small' } 
+                %>
               </div>
           </div>
           <div><%= f.submit "Sign up", class: 'homepage-signup btn' %></div>
