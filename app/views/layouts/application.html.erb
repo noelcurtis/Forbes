@@ -11,8 +11,9 @@
   <header>
     <div class="container">
       <div class="row">
-        <!-- TODO: put placeholder image here wih link to root path. -->
-        <div id="logo" class="span3"><%= link_to "Forbes Logo", root_path %></div>
+        <div id="logo" class="span3">
+          <%= link_to image_tag("placeholder-logo.png", border: 0), root_path %>
+        </div>
         <nav id="utility_nav" class="span9">
           <ul>
           <% if user_signed_in? %>
