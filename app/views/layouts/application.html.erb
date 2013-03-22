@@ -14,20 +14,19 @@
         <!-- TODO: put placeholder image here wih link to root path. -->
         <div id="logo" class="span3"><%= link_to "Forbes Logo", root_path %></div>
         <nav id="utility_nav" class="span9">
-              <ul>
-              <% if user_signed_in? %>
-              
-                <li>Logged in as <strong><%= current_user.email %></strong>.</li>
-                <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-              
-              <% else %>
-                <!-- TODO: make use of bootstrap jquery dropdown menus . SEE http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-                <li id="login"><a href="#">Log in</a></li>       
-                <!--<%= render "devise/sessions/new" %>-->
-
-              <% end %>
-              </ul> 
+          <ul>
+          <% if user_signed_in? %>
+          
+            <li>Logged in as <strong><%= current_user.email %></strong>.</li>
+            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          
+          <% else %>
+            <li id="login">
+              <a href="#">Log in</a>
+            </li>       
+          <% end %>
+          </ul> 
         </nav>
       </div>
     </div>
@@ -51,5 +50,9 @@
       </div>
     </div>
   </footer>
+  <!-- This form is hidden with css and is used as a template for the login popover -->
+  <div id="login_form">
+    <%= render "devise/sessions/new" %>
+  </div>
 </body>
 </html>

@@ -1,3 +1,11 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  $('header').on 'click', '#login', (e) ->
+    e.preventDefault()
+
+    login_form = $('#login_form').show()
+
+    $(this).data('html', true)
+           .data('content', login_form)
+           .data('placement', 'bottom')
+           .data('trigger', 'manual')
+           .popover('toggle')
