@@ -6,3 +6,24 @@
    font-size: 16px;
   }
 }
+
+::-webkit-input-placeholder {
+  color: $light_gray !important;
+  font-style:italic;
+  font-weight:lighter;
+}
+:-moz-placeholder {
+    color: $light_gray !important;
+    font-style:italic;
+  font-weight:lighter;
+}
+::-moz-placeholder {
+    color: $light_gray !important;
+    font-style:italic;
+  font-weight:lighter;
+}
+:-ms-input-placeholder {
+    color: $light_gray !important;
+    font-style:italic;
+  font-weight:lighter;
+}

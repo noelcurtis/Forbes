@@ -1,6 +1,11 @@
-<div class="neighborhood_thumbnail">
-  <%= image_tag neighborhood.photos.first.image.url(:medium) unless neighborhood.photos.empty? %>
-  <p><%= link_to neighborhood.name, "#{neighborhood.id}/preview", remote: true %></p>
-  <p>People: <%= neighborhood.users.count %></p>
-  <p>Favorites: <%= neighborhood.favorites.count %></p>
+<div class="neighborhood-thumbnail span4">
+  <div class="inner-margin2">
+    <a href="<%= "#{neighborhood.id}/preview" %>" data-remote="true">
+      <%= image_tag neighborhood.photos.first.image.url(:medium) unless neighborhood.photos.empty? %>
+      <div class="info">
+        <span class="title"><%= neighborhood.name %></span>
+        <p><i class="icon-user icon-white icon-large"></i> <%= neighborhood.users.count %> members</p>
+      </div>
+    </a>
+  </div>
 </div>

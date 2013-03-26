@@ -1,8 +1,8 @@
-<section id="neighborhood_thumbnail">
+
   <%= render @neighborhood %>
-</section>
-<section id="neighborhood_summary">
+
+<div class="neighborhood-summary span8">
   <%= render "neighborhood_summary", :neighborhood => @neighborhood %>  
-</section>
+</div>
 <br />
 <%= link_to "Join Neighborhood", "/users/#{current_user.id}/add_neighborhood/#{@neighborhood.id}", :method => :post %>

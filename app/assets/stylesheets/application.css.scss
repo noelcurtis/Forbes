@@ -82,11 +82,15 @@ $open-sans: 'Open Sans Condensed', sans-serif;
   border:#b9b9b9 1px solid;
   padding:6px 10px;
   font-size:17px;
+  width:100%;
+  padding:0;
+  text-indent:8px;
+  height:32px;
 }
 
 @mixin text-shadow{
   text-shadow: 0px 1px 3px black;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: $open-sans;
 }
 
 @mixin round-corner-3{
@@ -95,27 +99,24 @@ $open-sans: 'Open Sans Condensed', sans-serif;
   border-radius: 3px;
 }
 
-::-webkit-input-placeholder {
-  color: $light_gray !important;
-  font-style:italic;
-  font-weight:lighter;
-}
-:-moz-placeholder {
-    color: $light_gray !important;
-    font-style:italic;
-  font-weight:lighter;
-}
-::-moz-placeholder {
-    color: $light_gray !important;
-    font-style:italic;
-  font-weight:lighter;
-}
-:-ms-input-placeholder {
-    color: $light_gray !important;
-    font-style:italic;
-  font-weight:lighter;
-}
-  
+@import 'bootstrap';
+@import 'favorites';
+@import 'feeds';
+@import 'find_neighborhoods';
+@import 'forms';
+@import 'friendships';
+@import 'headers';
+@import 'home';
+@import 'navigation';
+@import 'neighborhoods';
+@import 'ownerships';
+@import 'photos';
+@import 'places';
+@import 'posts';
+@import 'scaffolds';
+@import 'signup_page';
+@import 'users';
+
 a:hover{
   text-decoration:none !important;
 }
@@ -123,8 +124,8 @@ a:hover{
 h1, h2, h3{
 }
 
-.inner-padding{
-  padding:15px;
+input[type="text"], input[type="email"], input[type="password"]{
+  @include form-field;
 }
 
 header{
@@ -136,40 +137,39 @@ header{
     padding:19px 0;
   }
 }
-#main-content{
-  .container{
-    padding:25px 0;
-  }
-}
+
 footer{
   margin:15px 0 0 0;
   border-top:solid $light_gray 1px;
   text-align:center;
 }
 
+form{
+  margin-bottom:0;
+}
+#main-content{
+  .container{
+    padding:25px 0;
+  }
+}
+
+.inner-padding{
+  padding:15px;
+}
+.inner-padding10{
+  padding:10px;
+}
+.inner-margin2{
+  margin:2px;
+}
+.no-padding{
+  padding:0 0 0 0 !important;
+}
 .orange{
   color:$light_orange;
 }
 .blue{
   color:$light_blue;
-}
-
-
-
-
-#signup_container {
-  width: 40%;
-  float: right;
-  padding: 7px;
-  border: 2px solid black;
-
-  input[type=text], input[type=email], input[type=password] {
-    width: 90%;
-    height: 30px;
-    margin: 5px;
-    font-size: 18px;
-    padding-left: 5px;
-  }
 }
 
 
@@ -200,21 +200,3 @@ footer{
   width: 60px;
   height: 60px; 
 }
-
-@import 'bootstrap';
-@import 'favorites';
-@import 'feeds';
-@import 'find_neighborhoods';
-@import 'forms';
-@import 'friendships';
-@import 'headers';
-@import 'home';
-@import 'navigation';
-@import 'neighborhoods';
-@import 'ownerships';
-@import 'photos';
-@import 'places';
-@import 'posts';
-@import 'scaffolds';
-@import 'signup_page';
-@import 'users';

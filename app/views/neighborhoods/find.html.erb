@@ -3,39 +3,54 @@
         <div class="row">
             <div id="welcome" class="span12">
                 <div class="row">
-                    <div id="welcome-left" class="span5"><div class="inner-padding">
-                        <h1><%= "Welcome, #{@user.first_name}!" %></h1>
-                        <p>
-                          In order for use to best serve you we need to know which neighborhood 
-                          you live in. This will be your primary neighborhood. Don't worry, you
-                        can change this later if you want to.
-                        </p>
-                    </div></div>
-                    <div id="welcome-right" class="span7"><div class="inner-padding">
-                      <div>
-                        <%= select_tag( :state_id, options_from_collection_for_select( State.order(:name), :id, :name), prompt: "Select a State") %>
-                      </div> 
-                      <div>
-                        <%= grouped_collection_select( :neighborhood, :city_id, State.order(:name), :cities, :name, :id, :name) %> 
-                      </div>
-                    </div></div>
+                    <div id="welcome-left" class="span5">
+                        <div class="inner-padding">
+                            <h1><%= "Welcome, #{@user.first_name}!" %></h1>
+                            <p>
+                              In order for use to best serve you we need to know which neighborhood 
+                              you live in. This will be your primary neighborhood. Don't worry, you
+                            can change this later if you want to.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="welcome-right" class="span7">
+                        <div class="inner-padding">
+                            <div>
+                              <%= select_tag( :state_id, options_from_collection_for_select( State.order(:name), :id, :name), prompt: "Select a State") %>
+                            </div> 
+                            <div>
+                              <%= grouped_collection_select( :neighborhood, :city_id, State.order(:name), :cities, :name, :id, :name) %> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="container no-padding">
+            <div class="arrow-down"></div>
+        </div>
+        <div id="neidhborhood-btns">
+            <div id="neighborhood-search" class="filter-btn triangle-isosceles right">
+                <div class="inner-padding10">
+                    <%= text_field_tag('search', nil, :disabled => true, :placeholder => "Search Neighborhoods") %>
+                </div>
+            </div>
+            <div id="neighborhood-create" class="filter-btn triangle-isosceles left">
+                <div class="inner-padding10">
+                    <%= link_to "Create Neighborhood", new_neighborhood_path, :class => "new_neighborhood_link", remote: true %>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <section id="bottom-main">
     <div class="container">
         <div class="row">
-            <div id="neighborhood_search">
-                <%= text_field_tag('search', nil, :disabled => true, :placeholder => "Search Neighborhoods") %>
-                <span>- OR -</span>
-                <%= link_to "Create Your Own Neighborhood", new_neighborhood_path, :class => "new_neighborhood_link", remote: true %>
+            <div class="span12">
+                <div id="neighborhoods" class="row">
+                </div>
             </div>
-            <br />
-            <div id="neighborhoods"></div>
         </div>
     </div>
 </section>
-
- 

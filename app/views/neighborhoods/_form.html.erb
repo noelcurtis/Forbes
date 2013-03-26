@@ -1,25 +1,27 @@
-<div>
-<%= form_for @neighborhood, :html => { :multipart => true }, :validate => true do |f| %>
-  <% if @neighborhood.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@neighborhood.errors.count, "error") %> prohibited this post from being saved:</h2>
-      <ul>
-      <% @neighborhood.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %> 
 
-  <%= f.hidden_field :city_id, value: @city.id %> 
-  <div><%= f.text_field :name, placeholder: "Neighborhood Name", autofocus: true  %></div>
-  <div><%= text_field_tag "zipcode", nil, disabled: true, placeholder: "Zipcode" %></div>
-  <br />
-  <div>Choose Cover Photo: <%= file_field_tag 'image' %></div>
-  <br />
-  <div><%= f.text_area :description, placeholder: "Describe the neighborhood." %></div>
-  <div>
-    <%= f.submit "Create New Neighborhood" %>
+  <div class="span8 offset4">
+  <%= form_for @neighborhood, :html => { :multipart => true }, :validate => true do |f| %>
+    <% if @neighborhood.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@neighborhood.errors.count, "error") %> prohibited this post from being saved:</h2>
+        <ul>
+        <% @neighborhood.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %> 
+  
+    <%= f.hidden_field :city_id, value: @city.id %> 
+    <div><%= f.text_field :name, placeholder: "Neighborhood Name", autofocus: true  %></div>
+    <div><%= text_field_tag "zipcode", nil, disabled: true, placeholder: "Zipcode" %></div>
+    <br />
+    <div>Choose Cover Photo: <%= file_field_tag 'image' %></div>
+    <br />
+    <div><%= f.text_area :description, placeholder: "Describe the neighborhood." %></div>
+    <div>
+      <%= f.submit "Create New Neighborhood" %>
+    </div>
+  <% end %>
   </div>
-<% end %>
-</div>
+
