@@ -6,6 +6,7 @@ $light_orange: #ff9933;
 $blue: #0e9fe2;
 $light_blue: #1fb5e9;
 $bg_blue: #eff9ff;
+$lighter_gray: #bbbbbb;
 $light_gray: #a9a9a9;
 $dark_gray: #58595b;
 $bg_gray: #f6f6f6;
@@ -80,6 +81,9 @@ $open-sans: 'Open Sans Condensed', sans-serif;
   box-shadow: inset 0px 2px 2px 0px #dddddd;
   color:$dark_gray;
   border:#b9b9b9 1px solid;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
   padding:6px 10px;
   font-size:17px;
   width:100%;
@@ -93,10 +97,10 @@ $open-sans: 'Open Sans Condensed', sans-serif;
   font-weight:700;
 }
 
-@mixin round-corner-3{
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+@mixin round-corners($size){
+  -webkit-border-radius: $size;
+  -moz-border-radius: $size;
+  border-radius: $size;
 }
 
 @mixin double-border-shadow($border_color){
@@ -106,12 +110,12 @@ $open-sans: 'Open Sans Condensed', sans-serif;
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 0px 9px 0px #dddddd;
-  -moz-box-shadow: 0px 0px 9px 0px #dddddd;
-  box-shadow: 0px 0px 9px 0px #dddddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 7px 0px #dddddd;
+  -moz-box-shadow: 0px 0px 7px 0px #dddddd;
+  box-shadow: 0px 0px 7px 0px #dddddd;
 }
 
 @import 'bootstrap';
@@ -132,6 +136,7 @@ $open-sans: 'Open Sans Condensed', sans-serif;
 @import 'scaffolds';
 @import 'signup_page';
 @import 'users';
+@import 'main_feed';
 
 a:hover{
   text-decoration:none !important;
@@ -158,7 +163,16 @@ header{
     padding:19px 0;
   }
 }
-
+header.small{
+  height:40px;
+  .container{
+    padding:9px 0;
+  }
+  #logo img{
+    width: 90px;
+    margin-top: -2px;
+  }
+}
 footer{
   margin:15px 0 0 0;
   border-top:solid $light_gray 1px;
@@ -179,6 +193,9 @@ form{
 }
 .inner-padding10{
   padding:10px;
+}
+.inner-padding8{
+  padding:8px;
 }
 .inner-margin2{
   margin:2px;

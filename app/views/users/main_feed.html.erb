@@ -1,32 +1,49 @@
-<section id="left_feed">
-  <%= link_to(image_tag(@user.profile_picture(:small), class: "mini-thumbnail"), @user) %>
-  <h4><%= link_to current_user.full_name, current_user %></h4>
-  <section>
-    <h5>Jump to a neighborhood...</h5>
-    <% @user.neighborhoods.each do |neighborhood| %>
-      <p><%= link_to neighborhood.name, neighborhood_path(neighborhood) %></p>
-    <% end %>
-    <%= link_to "Find more neighborhoods...", "/neighborhoods/find" %>
-  </section>
-</section>
-<section id="center_feed">
-  <h4>My Neighborhood Friend Activity</h4>
-  <hr />
-  <%= render @neighborhood_friends_posts %>
-</section>
-<section id="right_feed">
-  <h5>All Friends Activity</h5>
-  <hr />
-    <% for post in @all_friends_posts %>
-      <p>
-        <%= link_to(image_tag(post.user.profile_picture, class: "mini-thumbnail"), post.user) %>
-        <%= link_to post.user.full_name, post.user %> from <%= link_to post.neighborhood.name, post.neighborhood %>
-      </p>
-      <p><%= post.content %></p>
-    <% end %>
-  <h5>Suggested Friends</h5>
-  <hr />
-  <% for person in @suggested_friends %>
-    <p><%= link_to person.full_name, person %> <%= link_to "Add", friendships_path(friend_id: person), method: :post %></p>
-  <% end %>
-</section>
+<div class="container">
+    <div class="row">
+      <div id="cover-fix"></div>
+      <section id="main-feed" class="span10">
+        <div class="row">
+          <div id="identity-share" class="span10">
+            <div class="row">
+              <div class="identity span3">
+                <div class="inner-margin2">
+                  <div class="inner-padding8">
+                    <%= link_to(image_tag(@user.profile_picture(:small), class: "mini-thumbnail"), @user) %>
+                    <h4><%= link_to current_user.full_name, current_user %></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="share offset3 span7">
+                <div class="inner-margin2">
+                  <div class="inner-padding8">
+                    <div id="share-controls">
+                      <a href="#"><i class="icon-camera"></i></a><a href="#"><i class="icon-link"></i></a>
+                    </div>
+                    <input id="post_temp_field" name="post[content]" placeholder="Go ahead, share something!" size="30" type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="sidebar-left" class="span3">
+            <h5>Jump to a neighborhood...</h5>
+            <% @user.neighborhoods.each do |neighborhood| %>
+              <p><%= link_to neighborhood.name, neighborhood_path(neighborhood) %></p>
+            <% end %>
+            <%= link_to "Find more neighborhoods...", "/neighborhoods/find" %>
+          </div>
+          <div class="span7">
+            <%= render @neighborhood_friends_posts %>
+          </div>
+        </div>
+      </section>
+      <section id="sidebar-right" class="span2">
+        <h5>Suggested Friends</h5>
+        <% for person in @suggested_friends %>
+          <ul>
+          <li><%= link_to person.full_name, person %> <%= link_to "Add", friendships_path(friend_id: person), method: :post %></li>
+          </ul>
+        <% end %>
+      </section>
+    </div>
+</div>

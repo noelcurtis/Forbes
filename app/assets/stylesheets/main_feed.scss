@@ -1,0 +1,51 @@
+#cover-fix{
+  z-index:999;
+  position: relative;
+  border-top:2px solid white;
+  background:white url(/assets/chat_box_bg.png) repeat-x top center;
+  width:10px;
+  height:69px;
+  display:block;
+  top: 72px;
+  margin: -72px 0 0 255px;
+}
+.identity{
+  height:73px;
+  width: 255px;
+  margin-left: 10px;
+  @include double-border-shadow($lighter_gray);
+  .inner-padding8{
+    background:url(/assets/chat_box_bg.png) repeat-x top center;
+  }
+  img{
+    @include round-corners(2px);
+    width:50px;
+    height:50px;
+  }
+}
+.share{
+  margin-top: -93px;
+  @include double-border-shadow($lighter_gray);
+  .inner-padding8{
+    background:url(/assets/chat_box_bg.png) repeat-x top center;
+  }
+  #share-controls{
+    padding:0 0 5px;
+    i{
+      color:$light_gray;
+      font-size:1.8em;
+    }
+    a{
+      margin:0 10px;
+    }
+    a:hover i{
+      color:$dark_gray;
+    }
+    
+  }
+  input{
+    height:50px !important;
+    margin:0;
+  }
+}
+

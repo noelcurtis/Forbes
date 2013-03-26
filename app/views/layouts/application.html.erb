@@ -8,7 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
+  <header class="<% if user_signed_in? %>small<% end %>">
     <div class="container">
       <div class="row">
         <div id="logo" class="span3">

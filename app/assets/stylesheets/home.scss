@@ -23,7 +23,7 @@
   }
   a#login{
     @include gray-gradient;
-    @include round-corner-3;
+    @include round-corners(3px);
     border:2px solid white;
     color: $dark_gray;
     padding:9px 20px;
@@ -80,7 +80,7 @@
 }
 .homepage-btn.btn{
     @include orange-gradient;
-    @include round-corner-3;
+    @include round-corners(3px);
     @include text-shadow;
     color:white;
     border:none;
