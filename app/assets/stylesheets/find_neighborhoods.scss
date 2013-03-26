@@ -32,7 +32,50 @@
   z-index:999;
   position: relative;
 }
-
+#arrow-left{
+  position: relative;
+  left: 6px;
+  top: 15px;
+  margin:0 0 -42px;
+}
+#arrow-container{
+  overflow: hidden;
+  height: 42px;
+  width: 17px;
+}
+.arrow-left{
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari and Chrome */
+  -o-transform: rotate(45deg); /* Opera */
+  -moz-transform: rotate(45deg); /* Firefox */
+  width:20px;
+  height:20px;
+  -webkit-border-radius: 0 0 0 3px;
+  -moz-border-radius: 0 0 0 3px;
+  border-radius: 0 0 0 3px;
+  position: relative;
+  display:inline-block;
+  top:6px;
+  left:5px;
+}
+.backdrop {
+  background-color:$dark_gray;
+  -webkit-box-shadow: 0px 0px 9px 0px #dddddd;
+  -moz-box-shadow: 0px 0px 9px 0px #dddddd;
+  box-shadow: 0px 0px 9px 0px #dddddd;
+}
+.inner-white{
+  background:white;
+  top: -19px;
+  left: 6px;
+}
+.inner-color{
+  background:url(/assets/chat_box_bg.png) repeat-x -20px center;
+  top: -44px;
+  left: 9px;
+}
+  
 #neidhborhood-btns{
   margin-top:-10px;
   .filter-btn{
@@ -83,27 +126,29 @@
 }
 #neighborhoods{
   clear:both;
+  .neighborhood-signup-btn.btn{
+    @include double-border-shadow($dark_gray);
+    float:right;
+    padding:0;
+    margin:20px 0;
+    .inner-margin2{
+      a, input{
+        @include orange-gradient;
+        @include text-shadow;
+        color:white;
+        border:none;
+        font-size: 30px;
+        padding: 20px 40px;
+        display:block;
+      }
+    }
+  }
 }
 
 .neighborhood-thumbnail{
-  background:white;
-  margin-bottom:20px;
-  border:1px solid $dark_gray;
-  box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  -webkit-box-sizing:border-box;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 0px 9px 0px #cccccc;
-  -moz-box-shadow: 0px 0px 9px 0px #cccccc;
-  box-shadow: 0px 0px 9px 0px #cccccc;
+  @include double-border-shadow($dark_gray);
   .inner-margin2{
     background:$blue;
-  }
-  p{
-    margin: 35px 0 0;
-    padding:0;
   }
   a{
     color:white;
@@ -123,11 +168,17 @@
     display:inline-block;
     padding: 5px;
     vertical-align: top;
-    font-size:16px;
     color:white;
     .title{
       @include text-shadow;
-      font-weight:700;
+      height: 37px;
+      display: block;
+      font-size:18px;
+    }
+    p{
+      margin: 20px 0 0;
+      padding:0;
+      font-size:14px;
     }
   }
 }
@@ -136,12 +187,9 @@
     background:$light_blue;
   }
 }
-
-#neighborhood_summary {
-  width: 50%;
-  display: inline-block;
-  margin: 10px;
-  margin-left: 50px;
-  padding: 10px;
-  border: 2px solid black;
+.neighborhood-summary{
+  @include double-border-shadow($light_gray);
+  .inner-padding10{
+    background:url(/assets/chat_box_bg.png) repeat-x top center;
+  }
 }

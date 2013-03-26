@@ -6,6 +6,8 @@ gem 'devise'
 gem 'paperclip', '~> 3.3'
 gem 'client_side_validations'
 gem 'yaml_db'
+gem 'font-awesome-rails'
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

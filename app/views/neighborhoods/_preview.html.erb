@@ -1,8 +1,24 @@
 
   <%= render @neighborhood %>
-
-<div class="neighborhood-summary span8">
-  <%= render "neighborhood_summary", :neighborhood => @neighborhood %>  
+  
+<div id="arrow-left">
+  <div id="arrow-container">
+    <div class="arrow-left backdrop"></div>
+    <div class="arrow-left inner-white"></div>
+    <div class="arrow-left inner-color"></div>
+  </div>
 </div>
-<br />
-<%= link_to "Join Neighborhood", "/users/#{current_user.id}/add_neighborhood/#{@neighborhood.id}", :method => :post %>
+<div class="neighborhood-summary span8">
+  <div class="inner-margin2">
+    <div class="inner-padding10">
+      <%= render "neighborhood_summary", :neighborhood => @neighborhood %>
+    </div>
+  </div>
+</div>
+
+<div class="neighborhood-signup-btn btn">
+  <div class="inner-margin2">
+    <%= link_to "Complete Sign Up", "/users/#{current_user.id}/add_neighborhood/#{@neighborhood.id}", :method => :post %>
+  </div>
+</div>
+

@@ -18,9 +18,11 @@
     <br />
     <div>Choose Cover Photo: <%= file_field_tag 'image' %></div>
     <br />
-    <div><%= f.text_area :description, placeholder: "Describe the neighborhood." %></div>
-    <div>
-      <%= f.submit "Create New Neighborhood" %>
+    <div><%= f.text_area :description, placeholder: "Describe the neighborhood.", :rows => 5 %></div>
+    <div class="neighborhood-signup-btn btn">
+      <div class="inner-margin2">
+      <%= f.submit "Complete Sign Up" %>
+      </div>
     </div>
   <% end %>
   </div>

@@ -85,12 +85,12 @@ $open-sans: 'Open Sans Condensed', sans-serif;
   width:100%;
   padding:0;
   text-indent:8px;
-  height:32px;
 }
 
 @mixin text-shadow{
   text-shadow: 0px 1px 3px black;
   font-family: $open-sans;
+  font-weight:700;
 }
 
 @mixin round-corner-3{
@@ -99,7 +99,23 @@ $open-sans: 'Open Sans Condensed', sans-serif;
   border-radius: 3px;
 }
 
+@mixin double-border-shadow($border_color){
+  background:white;
+  margin-bottom:20px;
+  border:1px solid $border_color;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 9px 0px #dddddd;
+  -moz-box-shadow: 0px 0px 9px 0px #dddddd;
+  box-shadow: 0px 0px 9px 0px #dddddd;
+}
+
 @import 'bootstrap';
+@import 'font-awesome';
 @import 'favorites';
 @import 'feeds';
 @import 'find_neighborhoods';
@@ -126,6 +142,11 @@ h1, h2, h3{
 
 input[type="text"], input[type="email"], input[type="password"]{
   @include form-field;
+  height:32px;
+}
+textarea{
+  @include form-field;
+  padding:5px 0;
 }
 
 header{
