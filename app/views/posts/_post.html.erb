@@ -1,10 +1,18 @@
 <article class="post">
-  <%= link_to(image_tag(post.user.profile_picture, class: "thumbnail"), post.user) %>
-  <%= link_to(post.user.first_name, post.user) %> 
-  <span class="date"><%=  post.created_at.strftime("%l:%M %p %m/%d/%y") %></span>
-  <% if post.user == current_user %>
-    <%= link_to "edit", get_edit_path(post) %> |
-    <%= link_to 'delete', get_delete_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
-  <p><%= post.content %><p>
+  <div class="inner-margin2">
+    <div class="inner-padding8">
+      <%= link_to(image_tag(post.user.profile_picture, class: "med-thumbnail"), post.user) %>
+      <div class="profile-ident">
+        <%= link_to(post.user.full_name, post.user, class: "profile-name") %>
+        <br />
+        <p><span class="date"><%=  post.created_at.strftime("%l:%M %p %m/%d/%y") %></span>
+        in <a href="#">Neighborhood Name</a></p>
+      </div>
+      <% if post.user == current_user %>
+        <%= link_to "edit", get_edit_path(post) %> |
+        <%= link_to 'delete', get_delete_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+      <p><%= post.content %><p>
+    </div>
+  </div>
 </article>

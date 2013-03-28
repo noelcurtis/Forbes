@@ -1,5 +1,5 @@
-$ ->
-    $('#login').on 'click', (ev) -> $(this).toggleClass 'active'
+#$ ->
+#    $('#login').on 'click', (ev) -> $(this).toggleClass 'active'
 
 #$ ->
 #  $('header').on 'click', '#login', (e) ->

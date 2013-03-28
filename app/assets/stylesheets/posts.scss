@@ -1,23 +1,39 @@
 .post {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  vertical-align: top;
-  line-height: 70%;
-
+  @include double-border-shadow($lighter_gray);
+  /*-webkit-box-shadow: 0px 0px 7px 0px #dddddd;*/
+  /*-moz-box-shadow: 0px 0px 0px 0px #dddddd;*/
+  /*box-shadow: 0px 0px 0px 0px #dddddd;*/
+  color:#111;
+  .inner-padding8{
+    background:url(/assets/chat_box_bg.png) repeat-x top center;
+  }
   img {
-    height: 47px;
-    width: 47px;
-    float: left;
-    margin-right: 10px;
+    
   }  
 
   a {
-    color: blue;
-    text-decoration: none;
+    
   }
 
   .date {
-    font-size: 0.8em;
-    color: grey;
+    
+  }
+}
+div.profile-ident{
+  display: inline-block;
+  vertical-align: top;
+  padding:5px;
+  a.profile-name{
+    display: inline-block;
+    margin: 0;
+    font-family: $railway;
+    font-size:18px;
+  }
+  p{
+    font-size:11px;
+    color:$lighter_gray;
+    a{
+      color:$light_blue;
+    }
   }
 }

@@ -1,19 +1,23 @@
 <div class="container">
     <div class="row">
       <div id="cover-fix"></div>
-      <section id="main-feed" class="span10">
+      <section id="main-feed" class="span9">
         <div class="row">
-          <div id="identity-share" class="span10">
+          <div id="identity-share" class="span9">
             <div class="row">
               <div class="identity span3">
                 <div class="inner-margin2">
                   <div class="inner-padding8">
-                    <%= link_to(image_tag(@user.profile_picture(:small), class: "mini-thumbnail"), @user) %>
-                    <h4><%= link_to current_user.full_name, current_user %></h4>
+                    <%= link_to(image_tag(@user.profile_picture(:small), class: "med-thumbnail"), @user) %>
+                    <div class="profile-ident">
+                      <%= link_to current_user.full_name, current_user, class: "profile-name" %>
+                      <br />
+                      <span><%= link_to "edit profile", edit_user_path(@user) if @user == current_user %></span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="share offset3 span7">
+              <div class="share offset3 span6">
                 <div class="inner-margin2">
                   <div class="inner-padding8">
                     <div id="share-controls">
@@ -27,23 +31,33 @@
           </div>
           <div id="sidebar-left" class="span3">
             <h5>Jump to a neighborhood...</h5>
+            <ul>
             <% @user.neighborhoods.each do |neighborhood| %>
-              <p><%= link_to neighborhood.name, neighborhood_path(neighborhood) %></p>
+              <li><a href="<%= neighborhood_path(neighborhood) %>"><div class="neighborhood-notifications"><%= rand(0..20) %></div><%= neighborhood.name %></a></li>
             <% end %>
-            <%= link_to "Find more neighborhoods...", "/neighborhoods/find" %>
+            </ul>
+            <a href="/neighborhoods/find" class="white-btn"><i class="icon-circle-arrow-right"></i>Join Another Neightborhood</a>
           </div>
-          <div class="span7">
+          <div class="span6">
             <%= render @neighborhood_friends_posts %>
           </div>
         </div>
       </section>
-      <section id="sidebar-right" class="span2">
+      <section id="sidebar-right" class="span3">
         <h5>Suggested Friends</h5>
+        <ul>
         <% for person in @suggested_friends %>
-          <ul>
-          <li><%= link_to person.full_name, person %> <%= link_to "Add", friendships_path(friend_id: person), method: :post %></li>
-          </ul>
+          <li>
+            <%= link_to(image_tag(person.profile_picture(:small), class: "small-thumbnail"), person) %>
+            <div class="profile-ident">
+              <%= link_to person.full_name, person, class: "profile-name" %>
+              <br />
+              <p><a href="#">Neighborhood Name</a></p>
+            </div>
+            <%= link_to "Add", friendships_path(friend_id: person), method: :post, class: "white-btn" %>
+          </li>
         <% end %>
+        </ul>
       </section>
     </div>
 </div>

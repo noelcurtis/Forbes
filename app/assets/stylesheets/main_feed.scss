@@ -17,12 +17,14 @@
   .inner-padding8{
     background:url(/assets/chat_box_bg.png) repeat-x top center;
   }
-  img{
-    @include round-corners(2px);
-    width:50px;
-    height:50px;
-  }
+  div.profile-ident{
+    span a{
+      color:$orange;
+      font-size:11px;
+    }
+  } 
 }
+
 .share{
   margin-top: -93px;
   @include double-border-shadow($lighter_gray);
@@ -37,15 +39,79 @@
     }
     a{
       margin:0 10px;
-    }
-    a:hover i{
+      &:hover i{
       color:$dark_gray;
+      }
     }
-    
   }
   input{
     height:50px !important;
     margin:0;
   }
 }
-
+h5{
+    color:$light_gray;
+    font-size:13px;
+    border-bottom:1px solid $light_gray;
+    padding:0 0 3px;
+    font-weight: lighter;
+    margin:0;
+  }
+#sidebar-left{
+  margin-top:-20px;
+  ul{
+    margin: 0 0 1px;
+    @include list-cleanup;
+    li{
+      border-bottom:1px solid $bg_gray;
+      display:block;
+      a{
+        padding: 4px 2px;
+        display:block;
+        font-weight:bold;
+        div{
+          background: $orange;
+          text-align: center;
+          color:white;
+          display:inline-block;
+          margin:0 5px 0 0;
+          width:23px;
+          font-weight:lighter;
+          font-size:11px;
+          @include round-corners(2px);
+        }
+      }
+    }
+  }
+}
+#sidebar-right{
+  h5{
+    color:$dark_gray;
+  }
+  ul{
+    padding:5px 0px;
+    margin:0;
+    @include list-cleanup;
+    li{
+      padding:5px 0;
+      display:block;
+    }
+  }
+  div.profile-ident{
+    padding:0px;
+    a.profile-name{
+      display: inline-block;
+      margin: 0;
+      font-family: $railway;
+      font-size:15px;
+    }
+    p{
+      margin:0;
+    }
+  }
+  .white-btn{
+    display:inline-block;
+    padding:5px 10px;
+    float:right;
+  }
+}
