@@ -1,19 +1,21 @@
-<header id="neighborhood_header">
-  <h1><%= link_to @neighborhood.name, @neighborhood %></h1>
-  <%= link_to "Join Neighborhood", "/neighborhoods/#{@neighborhood.id}/join" unless current_user.neighborhoods.include?(@neighborhood) %>
-  <%= link_to("Favorite", "/neighborhoods/#{@neighborhood.id}/add_to_favorites", method: :post) unless already_favorited?(@neighborhood) %>
-  <%= link_to("(edit)") if is_owner?(@neighborhood) %>
-  <nav>
-    <ul>
-      <li><%= link_to "Home", "/users/#{current_user.id}/main_feed" %></li>
-      <li>People</li>
-      <li>Events</li>
-      <li><%= link_to "Places", neighborhood_places_path(@neighborhood) %></li>
-      <li>Gallery</li>
-      <li>More</li>
-    </ul>
-  </nav>
-  <% @neighborhood.users.each do |user| %>
-      <%= link_to(image_tag(user.profile_picture(:small), class: "large-thumbnail"), user) %>
-  <% end %>
-</header>
+<div class="inner bottom-border">
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <ul class="nav nav-tabs">
+          <li class="active"><%= link_to @neighborhood.name, @neighborhood %></li>
+          <li><a href="#">People</a></li>
+          <li><%= link_to "Places", neighborhood_places_path(@neighborhood) %></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Events</a></li>
+        </ul>
+      </div>
+      <div class="main-actions span4">
+        <%= link_to "Join", "/neighborhoods/#{@neighborhood.id}/join" unless current_user.neighborhoods.include?(@neighborhood) %>
+        <!--<%= link_to("Favorite", "/neighborhoods/#{@neighborhood.id}/add_to_favorites", method: :post) unless already_favorited?(@neighborhood) %>-->
+        <%= link_to("Edit") if is_owner?(@neighborhood) %>
+        <a href="#"><i class="icon-search single"></i></a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,8 @@
 <head>
   <title>Neighborhoods</title>
   <link href='http://fonts.googleapis.com/css?family=Raleway:200|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
   <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
@@ -20,9 +22,10 @@
             <% if user_signed_in? %>
               <li><a href="/"><i class="icon-home"></i></a></li>
               <li><a href="#"><i class="icon-bullhorn"></i></a></li>
-              <li class="dropdown">
+              <li class="dropdown logged">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= image_tag(current_user.profile_picture(:small), class: "mini-thumbnail") %> <%= current_user.full_name %></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li><%= link_to current_user.full_name, current_user %></li>
                   <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
                 </ul>
@@ -44,15 +47,17 @@
     </div>
   </header>
   <section id="main-content">
+    <div class="container no-padding">
     <% if flash[:error] %>
-      <p class='error'><%=h flash[:error] %></p>
+      <p class='alert alert-error'><%=h flash[:error] %><a class="close" data-dismiss="alert" href="#">&times;</a></p>
     <% end -%>
     <% if flash[:notice] %>
-      <p class='notice'><%=h flash[:notice] %></p>
+      <p class='alert alert-info'><%=h flash[:notice] %><a class="close" data-dismiss="alert" href="#">&times;</a></p>
     <% end -%>
     <% if flash[:success] %>
-      <p class='success'><%=h flash[:success] %></p>
+      <p class='alert alert-success'><%=h flash[:success] %><a class="close" data-dismiss="alert" href="#">&times;</a></p>
     <% end -%>
+    </div>
     <%= yield %>
   </section>
   <footer>

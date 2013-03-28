@@ -1,17 +1,30 @@
 <%= render "header" %>
-
-<section id="neighborhood_feed">
-  <%= render "posts/form" %>
-  <%= render @posts %>
-</section>
-
-<section id="neighborhood_details">
-  <%= link_to "Add Photos", "/neighborhoods/#{@neighborhood.id}/select_photos", id: "myclass" %>
-  <%= image_tag @neighborhood.photos.first.image.url(:medium), class: "neighborhood-main-photo" unless @neighborhood.photos.empty? %>
-  <% @neighborhood.photos.each do |photo| %>
-    <%= image_tag photo.image.url(:medium), class: "neighborhood-photo-thumb" %>
-  <% end %>
-  <section>
-    <p><%= @neighborhood.description %></p>
-  </section>
-</section>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <section id="neighborhood-members">
+        <% @neighborhood.users.each do |user| %>
+            <%= link_to(image_tag(user.profile_picture(:small), class: "med-thumbnail"), user) %>
+        <% end %> 
+      </section>
+      <div class="row padding-top">
+        <section id="neighborhood-feed" class="span7">
+          <%= render "posts/form" %>
+          <%= render @posts %>
+        </section>
+        <section id="neightborhood-sidebar" class="span5">
+          <div id="neighborhood-details">
+            <%= link_to "Add Photos", "/neighborhoods/#{@neighborhood.id}/select_photos", id: "myclass" %>
+            <%= image_tag @neighborhood.photos.first.image.url(:medium), class: "neighborhood-main-photo" unless @neighborhood.photos.empty? %>
+            <% @neighborhood.photos.each do |photo| %>
+              <%= image_tag photo.image.url(:medium), class: "neighborhood-photo-thumb" %>
+            <% end %>
+            <div>
+              <p><%= @neighborhood.description %></p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

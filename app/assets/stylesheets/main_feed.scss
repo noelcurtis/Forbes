@@ -24,9 +24,10 @@
     }
   } 
 }
-
-.share{
+#main-feed .share{
   margin-top: -93px;
+}
+.share{
   @include double-border-shadow($lighter_gray);
   .inner-padding8{
     background:url(/assets/chat_box_bg.png) repeat-x top center;

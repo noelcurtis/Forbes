@@ -1,14 +1,18 @@
 <%= render "neighborhoods/header" %>
-<section id="places-index">
-  <h2>Places</h2>
-  <%= link_to "Create a Place", new_neighborhood_place_path(@neighborhood) %>
-  <hr />
-  <%= render @places %>
-</section>
-<section id="places-categories">
-<h2>Categories</h2>
-<hr />
-<% @categories.each do |category| %>
-  <h3><%= link_to category.first.pluralize(2), "#" %></h3>
-<% end %>
-</section>
+<div class="container">
+  <div class="row">
+      <section id="places-index" class="span9">
+        <h2>Places</h2>
+        <%= link_to "Create a Place", new_neighborhood_place_path(@neighborhood) %>
+        <hr />
+        <%= render @places %>
+      </section>
+      <section id="places-categories" class="span3">
+        <h2>Categories</h2>
+        <hr />
+        <% @categories.each do |category| %>
+          <h3><%= link_to category.first.pluralize(2), "#" %></h3>
+        <% end %>
+      </section>
+  </div>
+</div>
