@@ -5,13 +5,21 @@
         <h2>Places</h2>
         <%= link_to "Create a Place", new_neighborhood_place_path(@neighborhood) %>
         <hr />
-        <%= render @places %>
+        <% if @places.empty? %>
+          <h4>
+            <%= params[:category].present? ? 'No places exist for this category yet' : 'No places exist yet' %>
+          </h4>
+        <% else %>
+          <%= render @places %>
+        <% end %>
       </section>
       <section id="places-categories" class="span3">
         <h2>Categories</h2>
         <hr />
-        <% @categories.each do |category| %>
-          <h3><%= link_to category.first.pluralize(2), "#" %></h3>
+        <% category_list.each do |category| %>
+          <h4>
+            <%= link_to category, neighborhood_places_path(@neighborhood, category: category) %>
+          </h4>
         <% end %>
       </section>
   </div>

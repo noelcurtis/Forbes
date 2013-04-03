@@ -3,7 +3,9 @@
     <div class="row">
       <div class="span6">
         <ul class="nav nav-tabs">
-          <li class="active"><%= link_to current_user.full_name, current_user, class: "profile-name" %></li>
+          <li class="active">
+            <%= link_to current_user_or(current_user, params[:id]).full_name, current_user_or(current_user, params[:id]), class: "profile-name" %>
+          </li>
           <li><a href="#">About</a></li>
           <li><a href="#">Photos</a></li>
           <li><%= link_to "Friends", user_friendships_path(@user) %></li>
