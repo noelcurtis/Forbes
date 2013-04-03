@@ -14,7 +14,7 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :neighborhood_id, value: @neighborhood.id %>
   <div class="actions">
-    <%= f.select :category, options_for_select(@categories), prompt: "Select a Category" %>
+    <%= f.select :category, options_for_select(category_list) %>
   </div>
   <div class="actions">
     <%= f.text_field :name, placeholder: "Business or Place Name" %>

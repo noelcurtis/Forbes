@@ -3,15 +3,13 @@ class PlacesController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :set_neighborhood
-  before_filter :set_categories, only: [:index, :new, :edit]
   before_filter :allow_if_owner, only: [:edit, :update, :destroy]
 
   def index
-    @places = @neighborhood.places
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @places }
+    @places = if params[:category].present?
+      @neighborhood.places.where category: params[:category]
+    else
+      @neighborhood.places
     end
   end
 
@@ -55,23 +53,19 @@ class PlacesController < ApplicationController
   end
 
   def update
-      if @place.update_attributes(params[:place])
-        flash[:success] = "Update successful"
-        redirect_to neighborhood_place_path(@neighborhood, @place)
-      else
-        flash[:error] = "Unable to update this place"
-        redirect_to edit_neighborhood_place_path(@neighborhood, @place)
-      end
+    if @place.update_attributes(params[:place])
+      flash[:success] = "Update successful"
+      redirect_to neighborhood_place_path(@neighborhood, @place)
+    else
+      flash[:error] = "Unable to update this place"
+      redirect_to edit_neighborhood_place_path(@neighborhood, @place)
+    end
   end
 
   def destroy
   end
 
   private
-
-  def set_categories
-    @categories = [ ['Restaurant', 'Restaurant'], ['Park', 'Park'], ['School', 'School'], ['Bar', 'Bar'] ]
-  end
 
   def set_neighborhood
     @neighborhood = Neighborhood.find(params[:neighborhood_id])
