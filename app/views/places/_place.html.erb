@@ -1,6 +1,8 @@
 <div class="place-thumbnail">
-  <%= link_to(image_tag(place.photos.first.image.url(:medium)), neighborhood_place_path(@neighborhood, place)) unless place.photos.empty? %>
-  <p><%= link_to place.name, neighborhood_place_path(@neighborhood, place) %></p>
-  <p><%= place.street_address %></p>
-  <p><%= link_to pluralize(place.favorites.count, "Favorite"), "#" %> | <%= link_to "Reviews" %></p>
+  <%= link_to(image_tag(place.photos.first.image.url(:medium)), neighborhood_place_path(@neighborhood, place), class: 'fleft') unless place.photos.empty? %>
+  <div>
+    <h6><%= link_to place.name, neighborhood_place_path(@neighborhood, place) %></h6>
+    <p><%= place.street_address %></span><br />
+    <i class="icon-heart"></i> <%= link_to pluralize(place.favorites.count, "Favorite"), "#" %> &nbsp;&nbsp;&nbsp;<i class="icon-comment"></i> <%= link_to "Reviews" %></p>
+  </div>
 </div>

@@ -1,39 +1,68 @@
 #places-index {
-  
-  display: inline-block;
-  float: left;
-  margin-top: 20px;
-
-  h2 {
-    display: inline;
+  h2{
+    font-size:30px;
+    border-bottom:1px solid $light_gray;
   }
 }
 
 #places-categories {
-  
-  display: inline-block;
-  float: right;
+  ul{
+    border-top:1px solid $light_gray;
+    border-bottom:1px solid $light_gray;
+    padding:0;
+    margin:0;
+    @include list-cleanup;
+    li{
+      border-bottom:1px solid $bg_gray;
+      margin:1px 0;
+      a{
+        display:block;
+        padding:5px 0;
+        text-indent: 10px;
+        &:hover{
+          color:white;
+          background:$orange;
+        }
+      }
+    }
+  }
+
 }
 
 .place-thumbnail{
-  display: inline-block;
-  width: 45%;
-  height: 85px;
-  margin: 5px;
-  border: 2px solid black;
-
-  p {
-    font-size: 14px;
-    line-height: 14px;
+  width:330px;
+  height:75px;
+  display:block;
+  float:left;
+  margin:0px 20px 20px 0;
+  color:$dark_gray;
+  &:hover{
+    background:$bg_gray;
   }
-
+  p{
+    line-height:22px;
+  }
+  i{
+    color:$light_gray;
+  }
+  a.fleft{
+    float:left;
+  }
   img {
-    vertical-align: center;
-    float: left;
-    height: 100%;
-    width: 95px;
-    margin-right: 10px;
+    width:105px;
+    height:75px;
+    @include round-corners(2px);
   }
+  div {
+    h6{
+      font-family:$railway;
+      margin:3px 0 5px 0;
+      font-size:17px;
+    }
+    padding: 0 0 0 112px;
+  }
+
+  
 }
 
 #place-details {

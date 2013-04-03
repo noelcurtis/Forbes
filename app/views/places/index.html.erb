@@ -2,9 +2,7 @@
 <div class="container">
   <div class="row">
       <section id="places-index" class="span9">
-        <h2>Places</h2>
-        <%= link_to "Create a Place", new_neighborhood_place_path(@neighborhood) %>
-        <hr />
+        <h2><i class="icon-map-marker"></i> Places<%= link_to "Create a Place", new_neighborhood_place_path(@neighborhood), class: 'add-btn' %></h2>
         <% if @places.empty? %>
           <h4>
             <%= params[:category].present? ? 'No places exist for this category yet' : 'No places exist yet' %>
@@ -15,12 +13,14 @@
       </section>
       <section id="places-categories" class="span3">
         <h2>Categories</h2>
-        <hr />
+        <ul>
+          <li><%= link_to "All", neighborhood_places_path(@neighborhood) %></li>
         <% category_list.each do |category| %>
-          <h4>
+          <li>
             <%= link_to category, neighborhood_places_path(@neighborhood, category: category) %>
-          </h4>
+          </li>
         <% end %>
+        </ul>
       </section>
   </div>
 </div>
