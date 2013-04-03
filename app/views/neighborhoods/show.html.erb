@@ -5,7 +5,8 @@
       <section id="neighborhood-members">
         <% @neighborhood.users.each do |user| %>
             <%= link_to(image_tag(user.profile_picture(:small), class: "med-thumbnail"), user) %>
-        <% end %> 
+        <% end %>
+        <a href="#" class="more"><i class="icon-arrow-right"></i>More</a>
       </section>
       <div class="row padding-top">
         <section id="neighborhood-feed" class="span7">
@@ -13,15 +14,30 @@
           <%= render @posts %>
         </section>
         <section id="neightborhood-sidebar" class="span5">
-          <div id="neighborhood-details">
-            <%= link_to "Add Photos", "/neighborhoods/#{@neighborhood.id}/select_photos", id: "myclass" %>
+          
+          <div id="neighborhood-photos" class="block">
+            <div class="hit-area"><a href="<%= "/neighborhoods/#{@neighborhood.id}/select_photos" %>" class="add-photos-btn"><i class="icon-plus"></i>Add Photos</a></div>
             <%= image_tag @neighborhood.photos.first.image.url(:medium), class: "neighborhood-main-photo" unless @neighborhood.photos.empty? %>
+            <div class="neighborhood-photo-thumbnails">
             <% @neighborhood.photos.each do |photo| %>
               <%= image_tag photo.image.url(:medium), class: "neighborhood-photo-thumb" %>
             <% end %>
-            <div>
-              <p><%= @neighborhood.description %></p>
+            <a href="#" class="more"><i class="icon-arrow-right"></i></a>
             </div>
+          </div>
+            
+          <h2>Neighborhood Details</h2>
+          <div id="neighborhood-details" class="block">
+            <p><%= @neighborhood.description %></p>
+<!--Task 773 should replace this map on the following line-->
+            <iframe width="100%" height="165" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=23.221155,77.412415&amp;num=1&amp;ie=UTF8&amp;t=m&amp;ll=23.232513,77.406921&amp;spn=0.104109,0.260239&amp;z=11&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?q=23.221155,77.412415&amp;num=1&amp;ie=UTF8&amp;t=m&amp;ll=23.232513,77.406921&amp;spn=0.104109,0.260239&amp;z=11&amp;source=embed" style="color:#0000FF;text-align:left"></a></small>
+          </div>
+          
+          <h2>Places<a href="<%= new_neighborhood_place_path(@neighborhood) %>" class="add-btn"><i class="icon-plus"></i>Create a Place</a></h2>
+          
+          <div id="neighborhood-places" class="block">
+            places go here.
+            <a class="white-btn" href="<%= neighborhood_places_path(@neighborhood) %>"><i class="icon-arrow-right"></i>View More Places</a></a>
           </div>
         </section>
       </div>

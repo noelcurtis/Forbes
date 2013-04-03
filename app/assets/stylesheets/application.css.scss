@@ -183,7 +183,21 @@ a{
 p.alert{
   margin:20px 0 0;
 }
-
+h2{
+  font-family: $open-sans;
+  color:$dark_gray;
+  font-size: 22px;
+  line-height: 1;
+  .add-btn{
+    @include white-btn;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    display:inline;
+    float:right;
+    padding: 1px 10px
+  }
+}
 h1, h2, h3{
 }
 

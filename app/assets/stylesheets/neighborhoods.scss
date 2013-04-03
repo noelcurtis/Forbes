@@ -1,11 +1,94 @@
 .row.padding-top{
     padding-top:20px;
   }
+#neightborhood-sidebar{
+  .block{
+    border-top:1px solid $light_gray;
+    /*border-bottom:1px solid $light_gray;*/
+    padding:2px 0;
+    margin-bottom:40px;
+  }
+}
 #neighborhood-members{
+  width: 100%;
+  float: left;
+  margin: 0 0 20px;
   a{
     @include white-btn;
     display: inline-block;
     padding: 0;
-    margin-right:3px;
+    margin-right:6px;
+    float:left;
   }
+  a.more{
+    height: 54px;
+    width: 54px;
+    position: relative;
+    line-height: 0;
+    font-size: 15px;
+    margin-right:0px;
+    i{
+      font-size: 19px;
+      margin-right: 2px;
+      top: 6px;
+      position: relative;
+      margin-bottom: 15px;
+    }
+  }
+}
+#neighborhood-photos{
+  .hit-area{
+    position:relative;
+    z-index:10;
+    .add-photos-btn{
+      text-align:center;
+      @include white-btn;
+      width:110px;
+      position: relative;
+      margin: 0px auto;
+      top: 90px;
+      visibility: hidden;
+    }
+    height:205px;
+    width:100%;
+    display:block;
+    margin: 0 0 -205px;
+    &:hover .add-photos-btn{
+      visibility: visible;
+      z-index:100;
+    }
+  }
+  .add-btn{
+    @include white-btn;
+  }
+  .neighborhood-main-photo{
+    height:205px;
+    width:100%;
+  }
+  .neighborhood-photo-thumbnails{
+    display:inline-block;
+    .neighborhood-photo-thumb, a.more{
+      width:44px;
+      height:40px;
+      float:left;
+      display:block;
+      margin:3px 3px 0 0;
+    }
+    a.more{
+      @include white-btn;
+      padding:0 !important;
+      i{
+        font-size: 20px;
+        margin-right: 2px;
+        top: 7px;
+      }
+    }
+  }
+}
+#neightborhood-details{
+  
+}
+
+#neighborhood-places{
+  
 }

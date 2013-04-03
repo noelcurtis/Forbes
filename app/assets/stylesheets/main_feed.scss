@@ -60,26 +60,43 @@ h5{
   }
 #sidebar-left{
   margin-top:-20px;
-  ul{
-    margin: 0 0 1px;
-    @include list-cleanup;
-    li{
-      border-bottom:1px solid $bg_gray;
-      display:block;
-      a{
-        padding: 4px 2px;
+  .block.manage{
+    i{
+      font-size:1.2em;
+      margin:0 5px 0 2px;
+    }
+    a{
+      display:inline-block;
+      width:180px;
+    }
+    a.add{
+      float:right;
+      width:auto;
+    }
+  }
+  .block{
+    margin:0 0 30px;
+    ul{
+      margin: 0 0 1px;
+      @include list-cleanup;
+      li{
+        border-bottom:1px solid $bg_gray;
         display:block;
-        font-weight:bold;
-        div{
-          background: $orange;
-          text-align: center;
-          color:white;
-          display:inline-block;
-          margin:0 5px 0 0;
-          width:23px;
-          font-weight:lighter;
-          font-size:11px;
-          @include round-corners(2px);
+        a{
+          padding: 4px 2px;
+          display:block;
+          font-weight:bold;
+          div{
+            background: $orange;
+            text-align: center;
+            color:white;
+            display:inline-block;
+            margin:0 5px 0 0;
+            width:23px;
+            font-weight:lighter;
+            font-size:11px;
+            @include round-corners(2px);
+          }
         }
       }
     }

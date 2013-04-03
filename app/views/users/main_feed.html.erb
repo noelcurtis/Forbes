@@ -30,13 +30,23 @@
             </div>
           </div>
           <div id="sidebar-left" class="span3">
-            <h5>Jump to a neighborhood...</h5>
-            <ul>
-            <% @user.neighborhoods.each do |neighborhood| %>
-              <li><a href="<%= neighborhood_path(neighborhood) %>"><div class="neighborhood-notifications">3</div><%= neighborhood.name %></a></li>
-            <% end %>
-            </ul>
-            <a href="/neighborhoods/find" class="white-btn"><i class="icon-circle-arrow-right"></i>Join Another Neightborhood</a>
+            <div class="block">
+              <h5>Jump to a neighborhood...</h5>
+              <ul>
+              <% @user.neighborhoods.each do |neighborhood| %>
+                <li><a href="<%= neighborhood_path(neighborhood) %>"><div class="neighborhood-notifications">3</div><%= neighborhood.name %></a></li>
+              <% end %>
+              </ul>
+              <a href="/neighborhoods/find" class="white-btn"><i class="icon-circle-arrow-right"></i>Join Another Neightborhood</a>
+            </div>
+            <div class="block manage">
+              <h5>Manage...</h5>
+              <ul>
+              <li><a href="#"><i class="icon-heart"></i>My Favorites</a></li>
+              <li><a href="#"><i class="icon-map-marker"></i>My Places</a><a href="#" class="add"><i class="icon-plus"></i></a></li>
+              <li><a href="#"><i class="icon-picture"></i>My Photos</a><a href="#" class="add"><i class="icon-plus"></i></a></li>
+              </ul>
+            </div>
           </div>
           <div class="span6">
             <%= render @neighborhood_friends_posts %>
