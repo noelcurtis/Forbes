@@ -197,7 +197,12 @@ h2{
     float:right;
     padding: 1px 10px
   }
+  &.bdr-bottom{
+    border-bottom: 1px solid $light_gray;
+    padding: 0 0 10px;
+  }
 }
+
 h1, h2, h3{
 }
 
