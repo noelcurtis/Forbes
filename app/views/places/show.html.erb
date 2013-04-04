@@ -2,25 +2,38 @@
 <div class="container">
   <div class="row">
       <section id="place-details" class="span9">
-        <div>
-          <p>
-            <h2><%= @place.name %></h2> 
-            <%= link_to("Favorite", "#{@place.id}/add_to_favorites", method: :post) unless already_favorited?(@place) %>
-            <%= link_to "(edit)", edit_neighborhood_place_path(@neighborhood, @place) if is_owner?(@place) %>
-          </p>
-          <span>
-            <strong><%= @place.street_address %></strong>
-            <%= @place.neighborhood.city.name + ", " + @place.neighborhood.city.state.name + " " + @place.zipcode.to_s   %>
-          </span>
-          <p><%= pluralize(@place.favorites.count, 'Favorite') %></p>
-          <p><%= link_to @place.website, "http://www.#{@place.website}", target: "_blank" %></p>
-        </div>
-        <div>
-          <%= image_tag @place.photos.last.image.url(:medium) %>
+        <h2><i class="icon-map-marker"></i> <%= @place.name %> <a href="<%= edit_neighborhood_place_path(@neighborhood, @place) if is_owner?(@place) %>" class="add-btn"><i class="icon-pencil"></i> Edit Place</a></h2> 
+        <div class="row">
+          <div class="span5">
+            <div class="bottom-border">
+              <span class="category">Category goes here</span><br/>
+              <span class="address"><strong><%= @place.street_address %></strong>, <%= @place.neighborhood.city.name + ", " + @place.neighborhood.city.state.name + " " + @place.zipcode.to_s   %></span><br/>
+              <a href="#" class="white-btn alt"><i class="icon-star"></i>Rate & Review</a>
+            </div>
+            <div class="bottom-border">
+              <%= pluralize(@place.favorites.count, 'Favorite') %> <%= link_to("Favorite", "#{@place.id}/add_to_favorites", method: :post, class: 'white-btn alt') unless already_favorited?(@place) %>
+            </div>
+            <div>
+              <%= link_to @place.website, "http://www.#{@place.website}", target: "_blank", class: 'blue-bold' %>
+            </div>
+          </div>
+          <div class="span4">
+            <%= image_tag @place.photos.last.image.url(:medium) %>
+          </div>
         </div>
       </section>
       <section id="place-sidebar" class="span3">
-        place sidebar stuff here.
+        <h2>Similar Places</h2>
+        <div class="place-teaser">
+          place1
+        </div>
+        <div class="place-teaser">
+          place2
+        </div>
+        <div class="place-teaser">
+          place3
+        </div>
+        <a class="white-btn" href="<%= neighborhood_places_path(@neighborhood) %>"><i class="icon-arrow-right"></i>View More Places</a>
       </section>
       <section class="span9">
         <%= render "posts/form" %>

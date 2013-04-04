@@ -64,14 +64,54 @@
 
   
 }
-
+#place-sidebar{
+  h2{
+    padding:0 0 9px;
+    border-bottom:1px solid $light_gray;
+  }
+  .place-teaser{
+    width:100%;
+    display:block;
+    height:50px;
+    margin:0 0 10px;
+  }
+}
 #place-details {
-  
-
-  div {
+  h2{
+    font-size:30px;
+    border-bottom:1px solid $light_gray;
+  }
+  img{
+    @include double-border-shadow($light_gray);
+  }
+  .category{
+    text-transform: uppercase;
+    color:$light_gray;
+  }
+  .address{
+    font-size:1.1em;
+  }
+  div.bottom-border{
+      border-bottom:1px solid $bg_gray;
+    }
+  div div div{
+    line-height: 1.7;
+    padding:10px 0;
+    
+    a{
+      margin:9px 0;
+    }
+    .blue-bold{
+      font-weight:bold;
+      color:$blue;
+    }
+  }
+  .alt{
+    padding: 1px 8px;
     display: inline-block;
-    margin-right: 50px;
-    float: left;
-  } 
-  
+    i{
+      font-size: 14px;
+      top: 0;
+    }
+  }
 }
