@@ -8,4 +8,8 @@ module ApplicationHelper
       return Favorite.where("user_id = ? AND place_id = ?", current_user.id, object.id).exists?
     end
   end
+
+  def tab_active?(action)
+    params[:controller] == action.to_s
+  end
 end

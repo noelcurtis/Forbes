@@ -3,13 +3,15 @@
     <div class="row">
       <div class="span6">
         <ul class="nav nav-tabs">
-          <li class="active">
+          <li class= <%= 'active' if tab_active?(:users) %>>
             <%= user_nav_link(current_user, (params[:id] || params[:user_id])) %>
           </li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Photos</a></li>
-          <li><%= link_to "Friends", user_friendships_path(@user) %></li>
-          <li><a href="#">Favorites</a></li>
+          <li><a href="javascript:void(0)">About</a></li>
+          <li><a href="javascript:void(0)">Photos</a></li>
+          <li class= <%= 'active' if tab_active?(:friendships) %>>
+            <%= link_to "Friends", user_friendships_path(@user) %>
+          </li>
+          <li><a href="javascript:void(0)">Favorites</a></li>
         </ul>
       </div>
       <div class="main-actions span3">
