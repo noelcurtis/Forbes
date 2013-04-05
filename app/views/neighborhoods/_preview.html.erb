@@ -18,7 +18,11 @@
 
 <div class="neighborhood-signup-btn btn">
   <div class="inner-margin2">
-    <%= link_to "Complete Sign Up", "/users/#{current_user.id}/add_neighborhood/#{@neighborhood.id}", :method => :post %>
+    <%= 
+      link_to (current_user.neighborhoods.count == 0 ? 'Complete Sign Up!' : 'Save Neighborhood'),
+      "/users/#{current_user.id}/add_neighborhood/#{@neighborhood.id}", 
+      method: :post
+    %>
   </div>
 </div>
 
