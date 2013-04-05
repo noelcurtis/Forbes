@@ -21,10 +21,10 @@
           <div id="welcome-right" class="span7">
             <div class="inner-padding">
               <div>
-                <%= select_tag( :state_id, options_from_collection_for_select( State.order(:name), :id, :name), prompt: "Select a State") %>
+                <%= select_tag(:state_id, options_from_collection_for_select(@states, :id, :name), prompt: "Select a State") %>
               </div> 
               <div>
-                <%= grouped_collection_select( :neighborhood, :city_id, State.order(:name), :cities, :name, :id, :name) %> 
+                <%= grouped_collection_select(:neighborhood, :city_id, @states, :cities, :name, :id, :name) %> 
               </div>
             </div>
           </div>

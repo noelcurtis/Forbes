@@ -5,6 +5,7 @@ class NeighborhoodsController < ApplicationController
   
   def find
     @user = current_user
+    @states = State.order :name
   end
 
   def join
