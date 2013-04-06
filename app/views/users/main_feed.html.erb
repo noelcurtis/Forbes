@@ -23,7 +23,9 @@
                     <div id="share-controls">
                       <a href="#"><i class="icon-camera"></i></a><a href="#"><i class="icon-link"></i></a>
                     </div>
-                    <input id="post_temp_field" name="post[content]" placeholder="Go ahead, share something!" size="30" type="text">
+                    <%= form_tag('/posts/') do %>
+                      <input id="post_temp_field" name="post[content]" placeholder="Go ahead, share something!" size="30" type="text">
+                    <% end %>
                   </div>
                 </div>
               </div>

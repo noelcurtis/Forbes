@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new params[:post].merge(user_id: current_user.id)
     if @post.save! 
       set_vars_based_on_params
       redirect_by_post_type
