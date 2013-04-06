@@ -20,11 +20,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new params[:post].merge(user_id: current_user.id)
-    if @post.save! 
-      set_vars_based_on_params
-      redirect_by_post_type
-    end
+    post = Post.new(params[:post].merge(user_id: current_user.id))
+    post.save! 
+    redirect_to request.env['HTTP_REFERER']
   end
 
   def update
@@ -39,10 +37,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    set_vars_based_on_params
-    redirect_by_post_type
+    Post.destroy params[:id]
+    redirect_to request.env['HTTP_REFERER']
   end
 
   private

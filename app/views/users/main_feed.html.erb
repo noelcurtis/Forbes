@@ -51,7 +51,9 @@
             </div>
           </div>
           <div class="span6">
-            <%= render @neighborhood_friends_posts %>
+            <% @posts.each do |post| %>
+              <%= render partial: 'posts/post', locals: { post: post } %>
+            <% end %>
           </div>
         </div>
       </section>

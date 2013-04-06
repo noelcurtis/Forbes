@@ -5,10 +5,18 @@
       <div class="profile-ident">
         <%= link_to(post.user.full_name, post.user, class: "profile-name") %>
         <br />
-        <p><span class="date"><%=  post.created_at.strftime("%l:%M %p %m/%d/%y") %></span>
-        in <a href="#">Neighborhood Name</a></p>
+        <p>
+        <span class="date">
+          <%=  post.created_at.strftime("%l:%M %p %m/%d/%y") %>
+        </span>
+        <br />
+        <span class="date">
+          <% neighborhood = current_user.neighborhoods.first %>
+          <%= link_to neighborhood.name, neighborhood_path(neighborhood) if neighborhood %>
+        </span>
+        </p>
       </div>
-      <% if post.user == current_user %>
+      <% if post.user_id == current_user.id %>
         <%= link_to "edit", get_edit_path(post) %> |
         <%= link_to 'delete', get_delete_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>

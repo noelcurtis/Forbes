@@ -15,10 +15,11 @@ class UsersController < ApplicationController
   end
 
   def main_feed
-    @all_friends_posts = Post.where(:user_id => current_user.friends).order("created_at DESC").limit(8)
-    @neighborhood_friends_posts = Post.where(user_id: current_user.friends, neighborhood_id: current_user.neighborhoods)
-                                      .order("created_at DESC")
-                                      .limit(30)
+    user_posts = current_user.posts
+    friends_posts = Post.where(user_id: current_user.friends)
+    neighborhood_posts = Post.where(user_id: current_user.friends, neighborhood_id: current_user.neighborhoods)
+    @posts = (user_posts + friends_posts + neighborhood_posts).sort_by(&:id).reverse
+
     if current_user.friends.empty?
       @suggested_friends = User.where("id != ?", current_user.id).limit(5)
     else  
@@ -28,6 +29,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = Post.where(neighborhood_id: nil).order 'created_at DESC'
   end
 
   def edit
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user])
-      if !params[:image].nil?
+      if params[:image].present?
         photo = Photo.new(image: params[:image], user_id: @user.id) 
         photo.save
         @user.profile_picture_id = photo.id
