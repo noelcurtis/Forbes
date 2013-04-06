@@ -41,8 +41,9 @@ class PlacesController < ApplicationController
     @place = Place.new(params[:place])
 
     if @place.save
-      photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id, place_id: @place.id)
-      photo.save
+      if params[:image].present?
+        Photo.create(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id, place_id: @place.id)
+      end
       ownership = current_user.ownerships.build(place_id: @place.id).save
       flash[:success] = "This place was successfully created"
       redirect_to neighborhood_place_path(@neighborhood, @place)
@@ -54,6 +55,9 @@ class PlacesController < ApplicationController
 
   def update
     if @place.update_attributes(params[:place])
+      if params[:image].present?
+        Photo.create(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id, place_id: @place.id)
+      end
       flash[:success] = "Update successful"
       redirect_to neighborhood_place_path(@neighborhood, @place)
     else

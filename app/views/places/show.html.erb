@@ -1,13 +1,26 @@
 <%= render "neighborhoods/header" %>
 <div class="container">
   <div class="row">
-      <section id="place-details" class="span9">
-        <h2><i class="icon-map-marker"></i> <%= @place.name %> <a href="<%= edit_neighborhood_place_path(@neighborhood, @place) if is_owner?(@place) %>" class="add-btn"><i class="icon-pencil"></i> Edit Place</a></h2> 
+    <section id="place-details" class="span9">
+    <h2>
+      <i class="icon-map-marker"></i>
+      <%= @place.name %>
+      <a href="<%= edit_neighborhood_place_path(@neighborhood, @place) if is_owner?(@place) %>" class="add-btn">
+        <i class="icon-pencil"></i>
+        Edit Place
+      </a>
+    </h2> 
         <div class="row">
           <div class="span5">
             <div class="bottom-border">
               <span class="category">Category goes here</span><br/>
-              <span class="address"><strong><%= @place.street_address %></strong>, <%= @place.neighborhood.city.name + ", " + @place.neighborhood.city.state.name + " " + @place.zipcode.to_s   %></span><br/>
+              <span class="address">
+                <strong>
+                  <%= @place.street_address %>
+                </strong>,
+                <%= @place.neighborhood.city.name + ", " + @place.neighborhood.city.state.name + " " + @place.zipcode.to_s   %>
+              </span>
+              <br/>
               <a href="#" class="white-btn alt"><i class="icon-star"></i>Rate & Review</a>
             </div>
             <div class="bottom-border">
@@ -18,7 +31,9 @@
             </div>
           </div>
           <div class="span4">
-            <%= image_tag @place.photos.last.image.url(:medium) %>
+            <% if @place.photos.any? %>
+              <%= image_tag @place.photos.last.image.url(:medium) %>
+            <% end %>
           </div>
         </div>
       </section>

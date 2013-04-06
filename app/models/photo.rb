@@ -10,4 +10,6 @@ class Photo < ActiveRecord::Base
   belongs_to :place
   
   validates_presence_of :user_id
+
+  default_scope lambda { order('id ASC') }
 end
