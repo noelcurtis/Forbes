@@ -1,7 +1,9 @@
 class Neighborhood < ActiveRecord::Base
   attr_accessible :name, :city_id, :description
   
-  has_and_belongs_to_many :users
+  has_many :neighborhood_users
+  has_many :users, through: :neighborhood_users
+
   belongs_to :city
   has_many :posts, dependent: :destroy
   has_many :photos
