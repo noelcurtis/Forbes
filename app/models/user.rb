@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
       "missing_profile_picture.png"
     end
   end
+
+  def primary_neighborhood
+    neighborhood_users.where(primary: true).first.neighborhood
+  end
 end

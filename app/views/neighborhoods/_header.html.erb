@@ -11,10 +11,17 @@
         </ul>
       </div>
       <div class="main-actions span4">
-        <%= link_to "Join", "/neighborhoods/#{@neighborhood.id}/join" unless current_user.neighborhoods.include?(@neighborhood) %>
+        <% if current_user.neighborhoods.include?(@neighborhood) %>
+          <% unless is_primary?(@neighborhood) %>
+            <%= link_to "Leave", leave_neighborhood_path(@neighborhood), method: :post %>
+            <%= link_to "Make Primary", primary_neighborhood_path(@neighborhood), method: :post %>
+          <% end %>
+        <% else %>
+          <%= link_to "Join", join_neighborhood_path(@neighborhood) %>
+        <% end %>
         <!--<%= link_to("Favorite", "/neighborhoods/#{@neighborhood.id}/add_to_favorites", method: :post) unless already_favorited?(@neighborhood) %>-->
         <%= link_to("Edit") if is_owner?(@neighborhood) %>
-        <a href="#"><i class="icon-search single"></i></a>
+        <%# <a href="#"><i class="icon-search single"></i></a> %>
       </div>
     </div>
   </div>

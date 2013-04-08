@@ -9,10 +9,31 @@ class NeighborhoodsController < ApplicationController
   end
 
   def join
-    @neighborhood = Neighborhood.find(params[:id])
-    current_user.neighborhoods << @neighborhood
+    neighborhood = Neighborhood.find params[:id]
+    primary = current_user.neighborhoods.empty?
+    NeighborhoodUser.create(user_id: current_user.id, neighborhood_id: neighborhood.id, primary: primary)
     flash[:success] = "You've successfully joined this neighborhood"
-    redirect_to @neighborhood
+    redirect_to neighborhood
+  end
+
+  def leave
+    nh = NeighborhoodUser.where(user_id: current_user.id, neighborhood_id: params[:id]).first
+    if nh.primary?
+      flash[:error] = 'Please set a new neighborhood as primary before leaving this one'
+    else
+      nh.destroy
+      flash[:success] = "You've left the neighborhood. You'll be missed"
+    end
+    redirect_to root_path
+  end
+
+  def primary
+    old_primary = current_user.neighborhood_users.where(primary: true).first
+    old_primary.update_attributes(primary: false)
+    new_primary = NeighborhoodUser.where(user_id: current_user.id, neighborhood_id: params[:id]).first
+    new_primary.update_attributes(primary: true)
+    flash[:success] = "You've changed your primary neighborhood"
+    redirect_to new_primary.neighborhood
   end
 
   def index
@@ -22,12 +43,16 @@ class NeighborhoodsController < ApplicationController
       @neighborhoods = Neighborhood.order(:name)
     end
     respond_to do |format|
-        format.html { render :layout => !request.xhr? }
+      format.html { render :layout => !request.xhr? }
     end
   end
 
+  def manage
+    @neighborhoods = current_user.neighborhood_users
+  end
+
   def preview
-    @neighborhood = Neighborhood.find(params[:id])
+    @neighborhood = Neighborhood.find params[:id]
   end
 
   def new
@@ -38,8 +63,8 @@ class NeighborhoodsController < ApplicationController
   def create
     @neighborhood = Neighborhood.new(params[:neighborhood])
     if @neighborhood.save
-      current_user.neighborhoods << @neighborhood
-      current_user.save
+      primary = current_user.neighborhoods.empty?
+      NeighborhoodUser.create(user_id: current_user.id, neighborhood_id: @neighborhood.id, primary: primary)
       photo = Photo.new(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id)
       photo.save
       ownership = current_user.ownerships.build(neighborhood_id: @neighborhood.id).save

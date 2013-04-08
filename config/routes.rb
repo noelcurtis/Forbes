@@ -19,10 +19,13 @@ Neighborhoods::Application.routes.draw do
 
   match "neighborhoods/find"                                => "neighborhoods#find"
   match "neighborhoods/:id/preview"                         => "neighborhoods#preview"
-  match "neighborhoods/:id/join"                            => "neighborhoods#join" 
+  match "neighborhoods/:id/join"                            => "neighborhoods#join",          as: :join_neighborhood
+  match "neighborhoods/:id/leave"                           => "neighborhoods#leave",         as: :leave_neighborhood, via: :post
+  match "neighborhoods/:id/primary"                         => "neighborhoods#primary",       as: :primary_neighborhood, via: :post
+  match "neighborhoods/:id/leave"                           => "neighborhoods#leave"
   match "neighborhoods/:id/select_photos"                   => "neighborhoods#select_photos"
   match "neighborhoods/:id/add_photos"                      => "neighborhoods#add_photos",    :via => :post
-  match "neighborhoods/:id/add_to_favorites"   => "favorites#add_to_favorites",  :via => :post
+  match "neighborhoods/:id/add_to_favorites"                => "favorites#add_to_favorites",  :via => :post
   
   resources :neighborhoods do
     resources :posts

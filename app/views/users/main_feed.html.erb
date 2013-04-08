@@ -33,10 +33,18 @@
           </div>
           <div id="sidebar-left" class="span3">
             <div class="block">
-              <h5>Jump to a neighborhood...</h5>
+              <h5>
+                Jump to a neighborhood...
+              </h5>
               <ul>
               <% @user.neighborhoods.each do |neighborhood| %>
-                <li><a href="<%= neighborhood_path(neighborhood) %>"><div class="neighborhood-notifications">3</div><%= neighborhood.name %></a></li>
+                <li>
+                  <a href="<%= neighborhood_path(neighborhood) %>">
+                    <div class="neighborhood-notifications">3</div>
+                    <%= neighborhood.name %>
+                    <%= '(primary)' if is_primary?(neighborhood) %>
+                  </a>
+                </li>
               <% end %>
               </ul>
               <a href="/neighborhoods/find" class="white-btn"><i class="icon-circle-arrow-right"></i>Join Another Neightborhood</a>
