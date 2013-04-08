@@ -11,7 +11,7 @@
         </span>
         <br />
         <span class="date">
-          <% neighborhood = current_user.neighborhoods.first %>
+          <% neighborhood = current_user.primary_neighborhood %>
           <%= link_to neighborhood.name, neighborhood_path(neighborhood) if neighborhood %>
         </span>
         </p>
