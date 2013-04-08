@@ -1,17 +1,18 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :has_neighborhood?, only: :main_feed
   before_filter :allow_if_current_user, only: [:main_feed, :edit, :update]
 
   def add_neighborhood
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
-    user = User.find(params[:id])
-    if user.neighborhoods.include? @neighborhood
+    neighborhood = Neighborhood.find(params[:neighborhood_id])
+    if current_user.neighborhoods.include?(neighborhood)
       flash[:notice] = "You already belong to this neighborhood"
     else
-      user.neighborhoods << @neighborhood 
+      primary = current_user.neighborhoods.empty?
+      NeighborhoodUser.create(user_id: current_user.id, neighborhood_id: neighborhood.id, primary: primary)
       flash[:success] = "You've successfully joined this neighborhood"
     end
-    redirect_to @neighborhood 
+    redirect_to root_path
   end
 
   def main_feed
@@ -52,8 +53,16 @@ class UsersController < ApplicationController
   end
 
   private
-    def allow_if_current_user
-      @user = User.find(params[:id])
-      redirect_to root_path unless @user == current_user
+
+  def allow_if_current_user
+    @user = User.find(params[:id])
+    redirect_to root_path unless @user == current_user
+  end
+
+  def has_neighborhood?
+    if current_user.neighborhoods.empty?
+      redirect_to '/neighborhoods/find'
     end
+  end
 end
+

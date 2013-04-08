@@ -21,7 +21,7 @@
     <div><%= f.text_area :description, placeholder: "Describe the neighborhood.", :rows => 5 %></div>
     <div class="neighborhood-signup-btn btn">
       <div class="inner-margin2">
-      <%= f.submit "Complete Sign Up" %>
+      <%= f.submit (current_user.neighborhoods.count == 0 ? 'Complete Sign Up!' : 'Save Neighborhood') %>
       </div>
     </div>
   <% end %>

@@ -6,8 +6,13 @@ Neighborhoods::Application.routes.draw do
   resources :places
   resources :friendships, only: [:create, :destroy]
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
-  root :to => redirect("/users/sign_up")
+  devise_for :users
+
+  root :to => redirect('/users/sign_up')
+
+  authenticated :user do
+    root to: "users#main_feed"
+  end
  
   match "users/:id/add_neighborhood/:neighborhood_id" => "users#add_neighborhood", :via => :post 
   match "users/:id/main_feed"                         => "users#main_feed"
