@@ -68,13 +68,16 @@
       <section id="sidebar-right" class="span3">
         <h5>Suggested Friends</h5>
         <ul>
-        <% for person in @suggested_friends %>
+        <% @suggested_friends.each do |person| %>
           <li>
             <%= link_to(image_tag(person.profile_picture(:small), class: "small-thumbnail"), person) %>
             <div class="profile-ident">
               <%= link_to person.full_name, person, class: "profile-name" %>
               <br />
-              <p><a href="#">Neighborhood Name</a></p>
+              <p>
+                <% neighborhood = person.primary_neighborhood %>
+                <%= link_to person.primary_neighborhood.try(:name), neighborhood_path(person.primary_neighborhood) %>
+              </p>
             </div>
             <%= link_to "Add", friendships_path(friend_id: person), method: :post, class: "white-btn" %>
           </li>
