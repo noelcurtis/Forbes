@@ -15,7 +15,9 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
+    @similar_places = Place.where('places.id != ?', @place.id).limit 5
     @posts = @place.posts
+    @favorites = @place.favorites
     @post = Post.new
     @submit_post_url = neighborhood_place_posts_path(@neighborhood, @place)
 

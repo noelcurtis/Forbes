@@ -26,10 +26,24 @@
               <a href="#" class="white-btn alt"><i class="icon-star"></i>Rate & Review</a>
             </div>
             <div class="bottom-border">
-              <%= pluralize(@place.favorites.count, 'Favorite') %> <%= link_to("Favorite", "#{@place.id}/add_to_favorites", method: :post, class: 'white-btn alt') unless already_favorited?(@place) %>
+                <section id="neighborhood-members">
+                  <% @favorites.each_with_index do |fav, i| %>
+                    <% break if i > 5 %>
+                    <%= link_to user_path(fav.user) do %>
+                      <%= image_tag fav.user.profile_picture(:small), class: 'med-thumbnail' %>
+                    <% end %>
+                  <% end %>
+                </section>
+                <%= pluralize(@favorites.count, 'Favorite') %>
+              <%= link_to("Favorite", "#{@place.id}/add_to_favorites", method: :post, class: 'white-btn alt') unless already_favorited?(@place) %>
             </div>
             <div>
               <%= link_to @place.website, "http://www.#{@place.website}", target: "_blank", class: 'blue-bold' %>
+            </div>
+            <div>
+              <p>
+                <%= @place.description %>
+              </p>
             </div>
           </div>
           <div class="span4">
@@ -41,15 +55,30 @@
       </section>
       <section id="place-sidebar" class="span3">
         <h2>Similar Places</h2>
-        <div class="place-teaser">
-          place1
-        </div>
-        <div class="place-teaser">
-          place2
-        </div>
-        <div class="place-teaser">
-          place3
-        </div>
+        <% @similar_places.each do |place| %>
+          <div class="place-teaser" style='width: auto; border: 1px solid grey; height: 100px;'>
+            <%= image_tag place.photos.last.image.url(:small) if place.photos.any? %>
+            <%= place.name %>
+            <%= place.posts.count %>
+            <i class='icon-comment'></i>
+            <%= place.favorites.count %>
+            <i class='icon-heart'></i>
+          </div>
+        <% end %>
+        <a class="white-btn" href="<%= neighborhood_places_path(@neighborhood) %>"><i class="icon-arrow-right"></i>View More Places</a>
+      </section>
+      <section id="place-sidebar" class="span3">
+        <h2>Places Your Friends Like</h2>
+        <% @similar_places.each do |place| %>
+          <div class="place-teaser" style='width: auto; border: 1px solid grey; height: 100px;'>
+            <%= image_tag place.photos.last.image.url(:small) if place.photos.any? %>
+            <%= place.name %>
+            <%= place.posts.count %>
+            <i class='icon-comment'></i>
+            <%= place.favorites.count %>
+            <i class='icon-heart'></i>
+          </div>
+        <% end %>
         <a class="white-btn" href="<%= neighborhood_places_path(@neighborhood) %>"><i class="icon-arrow-right"></i>View More Places</a>
       </section>
       <section class="span9">
