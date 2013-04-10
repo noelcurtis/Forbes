@@ -12,6 +12,10 @@
           <%= f.label :last_name %>
           <%= f.text_field :last_name, placeholder: "Last Name" %>
           </div>  
+          <div> 
+          <%= f.label :about %>
+          <%= f.text_area :about, placeholder: "Say something about yourself", rows: 3 %>
+          </div>  
           <div>
             <%= f.radio_button :gender, "male" %>
             <%= f.label :gender_male, "Male" %>

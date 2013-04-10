@@ -17,6 +17,16 @@
         </section>
         <section id="profile-sidebar" class="span3">
           <%= link_to(image_tag(@user.profile_picture(:small), class: "large-thumbnail"), @user) %>
+
+          <!-- probably should move this to another section -->
+          <% @user.neighborhoods.each do |nh| %>
+            <p>
+              <%= link_to nh.name, nh %>
+            </p>
+          <% end %>
+          <p>
+            <%= @user.about %> <!-- will print user about information if it exists -->
+          </p>
         </section>
         <div class="span6">
           <% @posts.each do |post| %>

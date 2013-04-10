@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :first_name, :last_name, :gender, :birthday
+                  :first_name, :last_name, :gender, :birthday, :about
 
   validates_presence_of :first_name, :last_name, :gender, :birthday
 
