@@ -7,6 +7,7 @@ gem 'paperclip', '~> 3.3'
 gem 'client_side_validations'
 gem 'yaml_db'
 gem 'font-awesome-rails'
+gem "aws-sdk"
 
 
 group :assets do
