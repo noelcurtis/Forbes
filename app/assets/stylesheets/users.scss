@@ -1,12 +1,28 @@
 #profile-sidebar{
   margin-top:-65px;
-  a{
+  a.ppic{
     @include double-border-shadow($dark_gray);
     display:block;
+    margin-bottom:0;
     @include round-corners(4px);
     img{
       @include round-corners(4px);
       margin:2px;
+    }
+  }
+  ul{
+    @include list-cleanup;
+    margin:0px 0 20px;
+    li{
+      a{
+        border-bottom:1px solid $dark_gray;
+        display:block;
+        padding:10px;
+        font-size:14px;
+        i{
+          padding-right:7px;
+        }
+      }
     }
   }
 }

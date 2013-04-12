@@ -3,36 +3,42 @@
   <div class="row">
     <div class="span12">
       <div class="row">
-        <section class="share span9">
-          <div class="inner-margin2">
-            <div class="inner-padding8">
-              <div id="share-controls">
-                <a href="#"><i class="icon-camera"></i></a><a href="#"><i class="icon-link"></i></a>
+        <section class="span9">
+          <div class="share">
+            <div class="inner-margin2">
+              <div class="inner-padding8">
+                <div id="share-controls">
+                  <a href="#"><i class="icon-camera"></i></a><a href="#"><i class="icon-link"></i></a>
+                </div>
+                <%= form_tag('/posts/') do %>
+                  <input id="post_temp_field" name="post[content]" placeholder="Go ahead, share something!" size="30" type="text">
+                <% end %>
               </div>
-              <%= form_tag('/posts/') do %>
-                <input id="post_temp_field" name="post[content]" placeholder="Go ahead, share something!" size="30" type="text">
-              <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span9">
+            <% @posts.each do |post| %>
+              <%= render partial: 'posts/post', locals: { post: post } %>
+            <% end %>
             </div>
           </div>
         </section>
         <section id="profile-sidebar" class="span3">
-          <%= link_to(image_tag(@user.profile_picture(:small), class: "large-thumbnail"), @user) %>
-
+          <%= link_to(image_tag(@user.profile_picture(:small), class: "large-thumbnail"), @user, class: "ppic") %>
+          <ul>
           <!-- probably should move this to another section -->
           <% @user.neighborhoods.each do |nh| %>
-            <p>
-              <%= link_to nh.name, nh %>
-            </p>
+            <li>
+              <a href="<%= neighborhood_path(nh) %>"><i class="icon-arrow-right"></i><%= nh.name %></a>
+            </li>
           <% end %>
+          </ul>
           <p>
             <%= @user.about %> <!-- will print user about information if it exists -->
           </p>
         </section>
-        <div class="span6">
-          <% @posts.each do |post| %>
-            <%= render partial: 'posts/post', locals: { post: post } %>
-          <% end %>
-        </div>
+        
       </div>
     </div>
   </div>
