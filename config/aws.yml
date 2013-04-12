@@ -1,0 +1,13 @@
+  development:
+    access_key_id: AKIAJXMQDRFSV7BEJL7Q
+    secret_access_key: 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
+
+  test:
+    access_key_id: AKIAJXMQDRFSV7BEJL7Q
+    secret_access_key: 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
+    
+
+  production:
+    access_key_id: AKIAJXMQDRFSV7BEJL7Q
+    secret_access_key: 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
+    
