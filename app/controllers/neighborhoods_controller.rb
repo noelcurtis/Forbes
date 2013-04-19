@@ -101,9 +101,20 @@ class NeighborhoodsController < ApplicationController
   end
 
   def edit
+    @neighborhood = Neighborhood.find params[:id]
   end
 
   def update
+    @neighborhood = Neighborhood.find params[:id]
+    if @neighborhood.update_attributes params[:neighborhood]
+      if params[:image].present?
+        Photo.create(image: params[:image], user_id: current_user.id, neighborhood_id: @neighborhood.id)
+      end
+      flash[:success] = "Neighborhod successfully updated"
+      redirect_to @neighborhood
+    else
+      render :edit
+    end
   end
 
   def destroy

@@ -6,7 +6,7 @@
         <% @neighborhood.users.each do |user| %>
             <%= link_to(image_tag(user.profile_picture(:small), class: "med-thumbnail"), user) %>
         <% end %>
-        <a href="#" class="more"><i class="icon-arrow-right"></i>More</a>
+        <a href="javascript:void(0)" class="more"><i class="icon-arrow-right"></i>More</a>
       </section>
       <div class="row padding-top">
         <section id="neighborhood-feed" class="span7">
@@ -17,12 +17,12 @@
           
           <div id="neighborhood-photos" class="block">
             <div class="hit-area"><a href="<%= "/neighborhoods/#{@neighborhood.id}/select_photos" %>" class="add-photos-btn"><i class="icon-plus"></i>Add Photos</a></div>
-            <%= image_tag @neighborhood.photos.first.image.url(:medium), class: "neighborhood-main-photo" unless @neighborhood.photos.empty? %>
+            <%= image_tag @neighborhood.photos.last.image.url(:medium), class: "neighborhood-main-photo" unless @neighborhood.photos.empty? %>
             <div class="neighborhood-photo-thumbnails">
             <% @neighborhood.photos.each do |photo| %>
               <%= image_tag photo.image.url(:medium), class: "neighborhood-photo-thumb" %>
             <% end %>
-            <a href="#" class="more"><i class="icon-arrow-right"></i></a>
+            <a href="javascript:void(0)" class="more"><i class="icon-arrow-right"></i></a>
             </div>
           </div>
             
