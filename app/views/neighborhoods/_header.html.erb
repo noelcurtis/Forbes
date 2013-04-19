@@ -24,7 +24,9 @@
           <%= link_to "Join", join_neighborhood_path(@neighborhood) %>
         <% end %>
         <!--<%= link_to("Favorite", "/neighborhoods/#{@neighborhood.id}/add_to_favorites", method: :post) unless already_favorited?(@neighborhood) %>-->
-        <%= link_to("Edit") if is_owner?(@neighborhood) %>
+        <% if show_edit? %>
+          <%= link_to 'Edit', edit_neighborhood_path(@neighborhood) if is_owner?(@neighborhood) %>
+        <% end %>
         <%# <a href="#"><i class="icon-search single"></i></a> %>
       </div>
     </div>
