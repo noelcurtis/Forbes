@@ -3,8 +3,8 @@ module Shared
 
     class << self
       def included(base)
-          base.extend ClassMethods
-        end
+        base.extend ClassMethods
+      end
     end
 
     module ClassMethods
