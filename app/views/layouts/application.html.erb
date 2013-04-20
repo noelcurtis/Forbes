@@ -25,12 +25,18 @@
                 <li class="dropdown logged">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= image_tag(current_user.profile_picture(:small), class: "mini-thumbnail") %> <%= current_user.full_name %></a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <li><%= link_to current_user.full_name, current_user %></li>
-                    <li><%= link_to 'Edit profile', edit_user_path(current_user) %></li>
+                    <li><a href="<%= user_path(current_user) %>"><i class="icon-user"></i> <%= current_user.full_name %></a></li>
+                    <li><a href="<%= edit_user_path(current_user) %>"><i class="icon-pencil"></i> Edit Profile</a></li>
+                    <li>
+                      <%= link_to destroy_user_session_path, method: :delete do %>
+                        <i class="icon-signout"></i> 
+                        Logout
+                      <% end %>
+                    </li>
+                    <hr style="margin:5px 0;">
                     <% current_user.neighborhoods.each do |nh| %>
-                      <li><%= link_to nh.name, neighborhood_path(nh) %></li>
+                      <li><a href="<%= neighborhood_path(nh) %>"><i class="icon-arrow-right"></i> <%= nh.name %></a></li>
                     <% end %>
-                    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
                   </ul>
                 </li>
               <% end %>
