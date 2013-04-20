@@ -1,19 +1,31 @@
-<%= form_for @photo, :url => @submit_url, :html => { :multipart => true } do |f| %>
-  <% if @photo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
-      <ul>
-      <% @photo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+    <h3>Select Photo to Upload</h3>
+      <div class="row">
+        <div class="span9">
+          <%= form_for @photo, :url => @submit_url, :html => { :multipart => true } do |f| %>
+            <% if @photo.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+                <ul>
+                <% @photo.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+            <div class="actions">
+              <%= f.file_field :image %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Upload Photo" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-  <div class="actions">
-    <%= f.file_field :image %>
   </div>
-  <div class="actions">
-    <%= f.submit "Upload Photo" %>
-  </div>
-<% end %>
+</div>
+

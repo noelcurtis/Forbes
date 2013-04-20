@@ -113,6 +113,18 @@
   .address{
     font-size:1.1em;
   }
+  .reviews-ratings{
+      color:$lighter_gray;
+      padding:0 !important;
+    i{
+      font-size:1.8em;
+      top: 4px;
+      position: relative;
+    }
+    a{
+      color:$dark_gray;
+    }
+  }
   div.bottom-border{
       border-bottom:1px solid $bg_gray;
     }

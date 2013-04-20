@@ -13,7 +13,7 @@
           <%= render "posts/form" %>
           <%= render @posts %>
         </section>
-        <section id="neightborhood-sidebar" class="span5">
+        <section id="neighborhood-sidebar" class="span5">
           
           <div id="neighborhood-photos" class="block">
             <div class="hit-area"><a href="<%= "/neighborhoods/#{@neighborhood.id}/select_photos" %>" class="add-photos-btn"><i class="icon-plus"></i>Add Photos</a></div>
@@ -36,7 +36,30 @@
           <h2>Places<a href="<%= new_neighborhood_place_path(@neighborhood) %>" class="add-btn"><i class="icon-plus"></i>Create a Place</a></h2>
           
           <div id="neighborhood-places" class="block">
-            places go here.
+            
+<!-- INSERT ACTUAL PLACES HERE! delete dummy info below -->
+            <div class="place-teaser">
+              <a href="/neighborhoods/1/places/1">
+              <img alt="Istock_000003008171small" src="/system/photos/images/000/000/004/small/iStock_000003008171Small.jpg?1366422591">
+              <div class="place-teaser-details">
+                <span class="pt-title">Curbside</span><br>
+                <span class="stats"><i class="icon-comment"></i> 0 Reviews</span>
+                <span class="stats"><i class="icon-heart"></i> 0 Favorites</span>
+              </div>
+              </a>
+            </div>
+            <div class="place-teaser">
+              <a href="/neighborhoods/1/places/1">
+              <img alt="Istock_000003008171small" src="/system/photos/images/000/000/004/small/iStock_000003008171Small.jpg?1366422591">
+              <div class="place-teaser-details">
+                <span class="pt-title">Curbside</span><br>
+                <span class="stats"><i class="icon-comment"></i> 0 Reviews</span>
+                <span class="stats"><i class="icon-heart"></i> 0 Favorites</span>
+              </div>
+              </a>
+            </div>
+<!-- stop deleting here. -->
+            
             <a class="white-btn" href="<%= neighborhood_places_path(@neighborhood) %>"><i class="icon-arrow-right"></i>View More Places</a>
           </div>
         </section>
