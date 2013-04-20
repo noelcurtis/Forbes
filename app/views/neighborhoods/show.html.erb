@@ -37,28 +37,19 @@
           
           <div id="neighborhood-places" class="block">
             
-<!-- INSERT ACTUAL PLACES HERE! delete dummy info below -->
-            <div class="place-teaser">
-              <a href="/neighborhoods/1/places/1">
-              <img alt="Istock_000003008171small" src="/system/photos/images/000/000/004/small/iStock_000003008171Small.jpg?1366422591">
-              <div class="place-teaser-details">
-                <span class="pt-title">Curbside</span><br>
-                <span class="stats"><i class="icon-comment"></i> 0 Reviews</span>
-                <span class="stats"><i class="icon-heart"></i> 0 Favorites</span>
+            <% @places.each do |place| %>
+              <div class="place-teaser">
+                <%= link_to neighborhood_place_path(@neighborhood, place) do %>
+                  <%= (image_tag place.photos.last.image.url(:medium)) unless place.photos.empty? %>
+                  <div class="place-teaser-details">
+                    <span class="pt-title"><%= place.name %></span>
+                    <br>
+                    <span class="stats"><i class="icon-comment"></i> 0 Reviews</span>
+                    <span class="stats"><i class="icon-heart"></i> <%= pluralize(place.favorites.count, "Favorite") %></span>
+                  </div>
+                <% end %>
               </div>
-              </a>
-            </div>
-            <div class="place-teaser">
-              <a href="/neighborhoods/1/places/1">
-              <img alt="Istock_000003008171small" src="/system/photos/images/000/000/004/small/iStock_000003008171Small.jpg?1366422591">
-              <div class="place-teaser-details">
-                <span class="pt-title">Curbside</span><br>
-                <span class="stats"><i class="icon-comment"></i> 0 Reviews</span>
-                <span class="stats"><i class="icon-heart"></i> 0 Favorites</span>
-              </div>
-              </a>
-            </div>
-<!-- stop deleting here. -->
+            <% end %>
             
             <a class="white-btn" href="<%= neighborhood_places_path(@neighborhood) %>"><i class="icon-arrow-right"></i>View More Places</a>
           </div>

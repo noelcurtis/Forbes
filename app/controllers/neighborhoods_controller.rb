@@ -84,6 +84,7 @@ class NeighborhoodsController < ApplicationController
     @posts = @neighborhood.posts.order("created_at DESC")
     @post = Post.new
     @submit_post_url = neighborhood_posts_path(@neighborhood)
+    @places = @neighborhood.places
   end
 
   def select_photos
