@@ -274,7 +274,9 @@ form{
 .blue{
   color:$light_blue;
 }
-
+.clear{
+  clear:both;
+}
 .mini-thumbnail{
   @include round-corners(2px);
   width: 30px;

@@ -146,50 +146,104 @@
 }
 
 .neighborhood-thumbnail{
-  @include double-border-shadow($dark_gray);
+  @include double-border-shadow($lighter_gray);
   .inner-margin2{
-    background:$blue;
+    @include gray-gradient;
+    text-align:center;
+    font-family:$open-sans;
+    &:hover{
+      /*background:$light_blue;*/
+    }
   }
+  
   a{
-    color:white;
+    color:$dark_gray;
     width: 100%;
     display: block;
   }
   a:hover{
-    color:white;
+    color:$dark_gray;
+  }
+  .neighborhood-thumbnail-img{
+    -moz-box-shadow: inset 0 0 18px -2px #000;
+    -webkit-box-shadow: inset 0 0 18px -2px #000;
+    box-shadow: inset 0 0 18px -2px #000;
+    position:relative;
+    z-index:100;
+    width: 265px;
+    height: 210px;
+    display: block;
+    margin: 15px auto;
+    
   }
   img{
-    width: 87px;
-    height: 87px;
-    border-right: 2px solid white;
-    display: inline-block;
-  }
+      width: 265px;
+      height: 210px;
+      display: block;
+      position:relative;
+      z-index:50;
+      margin: -225px auto 15px;
+    }
+  
   .info{
     display:inline-block;
     padding: 5px;
     vertical-align: top;
-    color:white;
+    color:$dark_gray;
     .title{
-      @include text-shadow;
+      /*@include text-shadow;*/
       height: 37px;
       display: block;
       font-size:18px;
     }
     p{
-      margin: 20px 0 0;
       padding:0;
       font-size:14px;
     }
-  }
-}
-.neighborhood-thumbnail:hover{
-  .inner-margin2{
-    background:$light_blue;
   }
 }
 .neighborhood-summary{
   @include double-border-shadow($light_gray);
   .inner-padding10{
     background:url(/assets/chat_box_bg.png) repeat-x top center;
+  }
+  #neighborhood-summary-top{
+    .map{
+      float:right;
+      display:block;
+      width:275px;
+      height:177px;
+      border:1px solid $lighter_gray;
+      margin: 0 0 0 10px;
+    }
+  }
+  h5{
+    color:$dark_gray;
+    margin:15px 0 10px;
+    padding:0;
+  }
+  .place-teaser{
+    width: 297px;
+    float:left;
+    display:block;
+    height:50px;
+    margin:0 0 10px;
+    color:$dark_gray;
+    img{
+      width:65px;
+      height:50px;
+      @include round-corners(2px);
+      float:left;
+    }
+    .place-teaser-details{
+      padding: 5px 0 0 70px;
+      .pt-title{
+        font-family: $railway;
+        font-size:15px;
+      }
+      span.stats{
+        padding-right:10px;
+      }
+    }
   }
 }

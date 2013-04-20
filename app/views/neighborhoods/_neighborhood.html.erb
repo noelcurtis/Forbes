@@ -1,6 +1,7 @@
 <div class="neighborhood-thumbnail span4">
   <div class="inner-margin2">
     <a href="<%= "#{neighborhood.id}/preview" %>" data-remote="true">
+      <div class="neighborhood-thumbnail-img"></div>
       <%= image_tag neighborhood.photos.first.image.url(:medium) unless neighborhood.photos.empty? %>
       <div class="info">
         <span class="title"><%= neighborhood.name %></span>

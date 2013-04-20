@@ -1,17 +1,23 @@
-<h3>People: </h3>
-<hr />
-<% for user in @neighborhood.users %>
-    <%= image_tag user.profile_picture, class: "mini-thumbnail" %>
-<% end %>
-<h3>Places: </h3>
-<hr />
-  <% for place in @neighborhood.places %>
-    <div>
-      <%= image_tag(place.photos.first.image.url(:small), class: "mini-thumbnail") unless place.photos.empty? %>
-      <%= place.name %>
+    <div id="neighborhood-summary-top">
+<!--Task 773 should replace this map on the following line-->
+        <div class="map">
+            <iframe width="100%" height="177" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=23.221155,77.412415&amp;num=1&amp;ie=UTF8&amp;t=m&amp;ll=23.232513,77.406921&amp;spn=0.104109,0.260239&amp;z=11&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?q=23.221155,77.412415&amp;num=1&amp;ie=UTF8&amp;t=m&amp;ll=23.232513,77.406921&amp;spn=0.104109,0.260239&amp;z=11&amp;source=embed" style="color:#0000FF;text-align:left"></a></small>
+        </div>
+        <p><%= @neighborhood.description %></p>
+        <div class="clear"></div>
     </div>
+<h5><i class="icon-user"></i> People</h5>
+<% for user in @neighborhood.users %>
+    <%= image_tag user.profile_picture, class: "med-thumbnail" %>
+<% end %>
+<h5><i class="icon-map-marker"></i> Places</h5>
+  <% for place in @neighborhood.places %>
+    <div class="place-teaser">
+        <%= image_tag(place.photos.first.image.url(:small), class: "mini-thumbnail") unless place.photos.empty? %>
+        <div class="place-teaser-details">
+          <span class="pt-title"><%= place.name %></span><br />
+          <span class="stats"><i class='icon-comment'></i> <%= place.posts.count %> Reviews</span>
+          <span class="stats"><i class='icon-heart'></i> <%= place.favorites.count %> Favorites</span>
+        </div>
+      </div>
   <% end %>
-<br />
-<br />
-<h3>Events: </h3>
-<hr />
