@@ -37,3 +37,111 @@ div.profile-ident{
     }
   }
 }
+div.post-options{
+  display: block;
+  float: right;
+  right: 0;
+  .dropdown-menu.pull-right{
+    min-width:100px;
+  }
+  .btn{
+    margin-bottom: 0;
+    text-shadow: 0;
+    border:0;
+    -webkit-box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, .1);
+    box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, .1);
+    background:none;
+    color: $light_gray;
+    &:focus {
+    outline: 0;
+    }
+  }
+  .open .btn{
+  }
+}
+
+#arrow-up{
+  position: relative;
+  right: 65px;
+  top: -16px;
+  display: inline-block;
+  float: right;
+  margin:0 0 -8px;
+  #arrow-container{
+    overflow: hidden;
+    height: 19px;
+    width: 33px;
+    .arrow-up{
+      transform: rotate(45deg);
+      -ms-transform: rotate(45deg); /* IE 9 */
+      -webkit-transform: rotate(45deg); /* Safari and Chrome */
+      -o-transform: rotate(45deg); /* Opera */
+      -moz-transform: rotate(45deg); /* Firefox */
+      width:20px;
+      height:20px;
+      -webkit-border-radius: 3px 0 0;
+      -moz-border-radius: 3px 0 0;
+      border-radius: 3px 0 0;
+      position: relative;
+      display:inline-block;
+      top:6px;
+      left:5px;
+      
+    }
+    .backdrop {
+      background-color:$lighter_gray;
+      /*-webkit-box-shadow: 0px 0px 9px 0px #dddddd;
+      -moz-box-shadow: 0px 0px 9px 0px #dddddd;
+      box-shadow: 0px 0px 9px 0px #dddddd;*/
+    }
+    .inner-white{
+      background:white;
+      top: -18px;
+      left: 5px;
+    }
+    .inner-color{
+      background-color:$bg_gray;
+      top: -39px;
+      left: 5px;
+    }
+  }
+}
+div.post-actions{
+  border-top:1px solid $bg_gray;
+  font-size:1.8em;
+  padding:8px;
+  a{
+    color:$lighter_gray;
+    &:hover{
+      color:$light_gray;
+    }
+  }
+}
+div.post-comments{
+  display:block;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-top:1px solid $lighter_gray;
+  .inner-margin2{
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+  .inner-padding8{
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background:$bg_gray;
+  }
+  input{
+    padding:0;
+    margin:0;
+    border-color:#cccccc;
+  }
+}
+@-moz-document url-prefix() {
+   .inner-white{
+     top:-13pt !important;
+   }
+}

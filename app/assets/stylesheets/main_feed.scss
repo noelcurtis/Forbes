@@ -3,11 +3,16 @@
   position: relative;
   border-top:2px solid white;
   background:white url(/assets/chat_box_bg.png) repeat-x top center;
-  width:10px;
+  width:12px;
   height:69px;
   display:block;
   top: 72px;
-  margin: -72px 0 0 255px;
+  margin: -72px 0 0 253px;
+}
+@-moz-document url-prefix() {
+    #cover-fix {
+        top: 73px;
+    }
 }
 .identity{
   height:73px;
@@ -24,8 +29,28 @@
     }
   } 
 }
-#main-feed .share{
-  margin-top: -93px;
+#main-feed{
+  hr{
+    margin:3px 0 0;
+    padding:0;
+    border-top:1px solid $light_gray !important;
+  }
+  .share{
+    margin-top: -93px;
+  }
+}
+#neighborhood-feed-filter{
+  text-align: right;
+  margin: 0 15px 0;
+  display: block;
+  top: -10px;
+  position: relative;
+  color:$light_gray;
+  div{
+    background: white;
+    display:inline-block;
+    padding: 0 8px;
+  }
 }
 .share{
   @include double-border-shadow($lighter_gray);
@@ -44,6 +69,11 @@
       color:$dark_gray;
       }
     }
+    .fright{
+      float:right;
+      margin-right: 6px;
+      font-size: 2em;
+    }
   }
   input{
     height:50px !important;
@@ -61,6 +91,7 @@ h5{
 #sidebar-left{
   margin-top:-20px;
   .block.manage{
+    border-bottom:1px solid $light_gray;
     i{
       font-size:1.2em;
       margin:0 5px 0 2px;
@@ -102,6 +133,7 @@ h5{
     }
   }
 }
+
 #sidebar-right{
   h5{
     color:$dark_gray;

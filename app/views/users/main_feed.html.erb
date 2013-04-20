@@ -21,7 +21,7 @@
                 <div class="inner-margin2">
                   <div class="inner-padding8">
                     <div id="share-controls">
-                      <a href="#"><i class="icon-camera"></i></a><a href="#"><i class="icon-link"></i></a>
+                      <a href="#"><i class="icon-camera"></i></a><a href="#"><i class="icon-link"></i></a><a href="#"><i class="icon-lock fright"></i></a>
                     </div>
                     <%= form_tag('/posts/') do %>
                       <input id="post_temp_field" name="post[content]" placeholder="Go ahead, share something!" size="30" type="text">
@@ -54,27 +54,23 @@
               <ul>
               <li><a href="#"><i class="icon-heart"></i>My Favorites</a></li>
               <li>
-                <a href="#">
-                  <i class="icon-map-marker"></i>
-                  My Places
-                </a>
-                <a href="#" class="add">
-                  <i class="icon-plus"></i>
-                </a>
+                <a href="#"><i class="icon-map-marker"></i>My Places</a>
+                <a href="#" class="add"><i class="icon-plus"></i></a>
               </li>
               <li>
-                <a href="#">
-                  <i class="icon-picture"></i>
-                  My Photos
-                </a>
-                <a href="#" class="add">
-                  <i class="icon-plus"></i>
-                </a>
+                <a href="#"><i class="icon-picture"></i>My Photos</a>
+                <a href="#" class="add"><i class="icon-plus"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="icon-calendar"></i>My Events</a>
+                <a href="#" class="add"><i class="icon-plus"></i></a>
               </li>
               </ul>
             </div>
           </div>
           <div class="span6">
+            <hr>
+            <div id="neighborhood-feed-filter"><div>Neighborhood Feed <i class="icon-caret-down"></i></div></div>
             <% @posts.each do |post| %>
               <%= render partial: 'posts/post', locals: { post: post } %>
             <% end %>

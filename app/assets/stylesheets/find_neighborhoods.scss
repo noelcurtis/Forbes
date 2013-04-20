@@ -37,43 +37,43 @@
   left: 6px;
   top: 15px;
   margin:0 0 -42px;
-}
-#arrow-container{
-  overflow: hidden;
-  height: 42px;
-  width: 17px;
-}
-.arrow-left{
-  transform: rotate(45deg);
-  -ms-transform: rotate(45deg); /* IE 9 */
-  -webkit-transform: rotate(45deg); /* Safari and Chrome */
-  -o-transform: rotate(45deg); /* Opera */
-  -moz-transform: rotate(45deg); /* Firefox */
-  width:20px;
-  height:20px;
-  -webkit-border-radius: 0 0 0 3px;
-  -moz-border-radius: 0 0 0 3px;
-  border-radius: 0 0 0 3px;
-  position: relative;
-  display:inline-block;
-  top:6px;
-  left:5px;
-}
-.backdrop {
-  background-color:$dark_gray;
-  -webkit-box-shadow: 0px 0px 9px 0px #dddddd;
-  -moz-box-shadow: 0px 0px 9px 0px #dddddd;
-  box-shadow: 0px 0px 9px 0px #dddddd;
-}
-.inner-white{
-  background:white;
-  top: -19px;
-  left: 6px;
-}
-.inner-color{
-  background:url(/assets/chat_box_bg.png) repeat-x -20px center;
-  top: -44px;
-  left: 9px;
+  #arrow-container{
+    overflow: hidden;
+    height: 42px;
+    width: 17px;
+  }
+  .arrow-left{
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Safari and Chrome */
+    -o-transform: rotate(45deg); /* Opera */
+    -moz-transform: rotate(45deg); /* Firefox */
+    width:20px;
+    height:20px;
+    -webkit-border-radius: 0 0 0 3px;
+    -moz-border-radius: 0 0 0 3px;
+    border-radius: 0 0 0 3px;
+    position: relative;
+    display:inline-block;
+    top:6px;
+    left:5px;
+  }
+  .backdrop {
+    background-color:$dark_gray;
+    -webkit-box-shadow: 0px 0px 9px 0px #dddddd;
+    -moz-box-shadow: 0px 0px 9px 0px #dddddd;
+    box-shadow: 0px 0px 9px 0px #dddddd;
+  }
+  .inner-white{
+    background:white;
+    top: -19px;
+    left: 6px;
+  }
+  .inner-color{
+    background:url(/assets/chat_box_bg.png) repeat-x -20px center;
+    top: -44px;
+    left: 9px;
+  }
 }
   
 #neidhborhood-btns{
